@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pretty PBFT</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+	<header>
+		<h1>
+            Pretty PBFT Information
+        </h1>
+	</header>
+
+	<main>
+        <table>
+            <thead>
+                <th>Nodes</th>
+                <th>Request</th>
+                <th>Pre-Prepare</th>
+                <th>Prepare</th>
+                <th>Commit</th>
+                <th class="lastCol">Reply</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="node">
+                            Client
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="lastCol"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br><br><br>
+        <button type="button">Add Row</button>
+        <form action="get">
+            <label for="location1x"> From x </label> <input type="text" name="location1x" id="location1x" required> 
+            <label for="location1y"> y </label> <input type="text" name="location1y" id="location1y" required>
+            <br>
+            <label for="location2x"> To x </label> <input type="text" name="location2x" id="location2x" required> 
+            <label for="location2y"> y </label> <input type="text" name="location2y" id="location2y" required>
+            <br>
+            <input type="submit" value="Add Arrow" id="arrowBtn">
+        </form>
+	</main>
+
+</body>
+</html>

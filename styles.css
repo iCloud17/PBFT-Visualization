@@ -1,0 +1,107 @@
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+header, main {
+    margin: 1%;
+}
+
+/* ----------------------TABLE CSS---------------------- */
+
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    position: relative;
+}
+
+th, td {
+    position: relative;
+    border-right: 2px dashed black;
+    padding: 2%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    font-size: 1.3em;
+    border-bottom: 2px solid black;
+}
+
+td {
+    font-size: 1.1em;
+    border-bottom: 2px solid black;
+}
+
+.lastCol {
+    border-right: none;
+}
+
+.node {
+    position: absolute;
+    border: 3px solid green;
+    border-radius: 100%;
+    background-color: white;
+    width: fit-content;
+    padding: 4%;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    font-size: 1.1em;
+}
+
+.corner {
+    position: absolute;
+    background-color: blue;
+    opacity: 0;
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    top: 100%;
+    left: 100%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+
+/* ----------------------------------ARROW CSS---------------------------------- */
+
+.arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: visible;
+}
+
+.line, .head {
+    margin: 0;
+    padding: 0;
+}
+
+.line {
+    width: 300px;
+    height: 3px;
+    background-color: orangered;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.head {
+    width: 0;
+    height: 0; 
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 15px solid orangered;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
