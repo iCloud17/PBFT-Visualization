@@ -70,6 +70,38 @@ td {
     cursor: pointer;
 }
 
+/* KEEP ABOVE ARROW CSS */
+/* -------------------------------PHASE COLORS CSS------------------------------- */
+
+.request {
+    background-color: #2364AA;
+    border-left-color: #2364AA;
+    animation-duration: 6s;
+}
+
+.preprepare {
+    background-color: #EA7317;
+    border-left-color: #EA7317;
+    animation-duration: 9s;
+}
+
+.prepare {
+    background-color: #358600;
+    border-left-color: #358600;
+    animation-duration: 8s;
+}
+
+.commit {
+    background-color: #3DA5D9;
+    border-left-color: #3DA5D9;
+    animation-duration: 7s;
+}
+
+.reply {
+    background-color: #FEC601;
+    border-left-color: #FEC601;
+    animation-duration: 10s;
+}
 
 /* ----------------------------------ARROW CSS---------------------------------- */
 
@@ -84,24 +116,56 @@ td {
 .line, .head {
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 .line {
-    width: 300px;
     height: 3px;
-    background-color: orangered;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
+    border: none;
 }
 
 .head {
     width: 0;
-    height: 0; 
+    height: 0;
+    background-color: transparent;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
-    border-left: 15px solid orangered;
+    border-left-width: 15px;
+    border-left-style: solid;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
+}
+
+.msgBall {
+    margin: 0;
+    padding: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    background-color: inherit;
+    transform: translateY(-35%);
+    animation-name: travel;
+    animation-duration: inherit;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes travel {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+    }
 }
