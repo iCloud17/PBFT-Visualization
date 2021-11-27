@@ -783,6 +783,7 @@ class PBFTHandler:
                     'type': 'prepare'
                 }
         '''
+        self._log.info("---> %d: ################## COMMIT START ###################", self._index)
         json_data = await request.json()
         self._log.info("---> %d: receive prepare msg from %d", 
             self._index, json_data['index'])
@@ -840,6 +841,7 @@ class PBFTHandler:
                     'type': 'commit'
                 }
         '''
+        self._log.info("---> %d: ################## REPLY START ###################", self._index)
         json_data = await request.json()
         self._log.info("---> %d: on reply", self._index)
         # print("\t--->node "+str(self._index)+": on reply ")
