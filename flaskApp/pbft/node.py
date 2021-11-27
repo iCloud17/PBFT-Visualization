@@ -270,7 +270,7 @@ class CheckPoint:
             self._session = aiohttp.ClientSession(timeout=timeout)
         for i, node in enumerate(nodes):
             if random() > self._loss_rate:
-                self._log.debug("make request to %d, %s", i, command)
+                self._log.debug("sending request to %d, %s", i, command)
                 try:
                     _ = await self._session.post(
                         self.make_url(node, command), json=json_data)
@@ -666,9 +666,12 @@ class PBFTHandler:
 
         '''
 
+        self._log.info("---> %d: ################## PREPREPARED START ###################", self._index)
         
         this_slot = str(self._next_propose_slot)
         self._next_propose_slot = int(this_slot) + 1
+
+        
 
         self._log.info("---> %d: on preprepare, propose at slot: %d", 
             self._index, int(this_slot))
@@ -686,14 +689,16 @@ class PBFTHandler:
             'type': 'preprepare'
         }
         
+        self._log.info("---> %d: -------- BROADCASTING PREPREPARED MESSAGE TO ALL NODES -------", self._index)
         await self._post(self._nodes, PBFTHandler.PREPARE, preprepare_msg)
+        #self._log.info("---> %d: ################## PREPREPARED END ###################", self._index)
 
     async def get_request(self, request):
         '''
         Handle the request from client if leader, otherwise 
         redirect to the leader.
         '''
-        self._log.info("---> %d: on request", self._index)
+        self._log.info("---> %d: handling request from client", self._index)
 
         if not self._is_leader:
             if self._leader != None:
@@ -732,6 +737,7 @@ class PBFTHandler:
                 }
 
         '''
+        self._log.info("---> %d: ################## PREPARED START ###################", self._index)
         json_data = await request.json()
 
         if json_data['view'] < self._follow_view.get_view():
@@ -758,6 +764,7 @@ class PBFTHandler:
                 },
                 'type': Status.PREPARE
             }
+            self._log.info("---> %d: -------- BROADCASTING PREPARED MESSAGE TO ALL NODES -------", self._index)
             await self._post(self._nodes, PBFTHandler.COMMIT, prepare_msg)
         return web.Response()
 
@@ -1404,8 +1411,12 @@ def conf_parse(conf_file) -> dict:
 def main():
     args = arg_parse()
     if args.log_to_file:
-        logging.basicConfig(filename='$node_' + str(args.index)+'.log',
-                            filemode='a', level=logging.DEBUG)
+        
+        #logging.basicConfig(filename='$node_' + str(args.index)+'.log', filemode='a', level=logging.DEBUG)
+        logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+                datefmt='%Y-%m-%d:%H:%M:%S',
+                filename='node_' + str(args.index)+'.log',
+                filemode='a', level=logging.DEBUG) 
     logging_config()
     log = logging.getLogger()
     conf = conf_parse(args.config)
