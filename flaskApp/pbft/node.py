@@ -176,6 +176,7 @@ class CheckPoint:
         self._session = None
         self._network_timeout = network_timeout
 
+
         self._log.info("---> %d: Create checkpoint.", self._node_index)
 
     # Class to record the status of received checkpoints
@@ -250,6 +251,7 @@ class CheckPoint:
         output:
             next_slot for the new update and garbage collection of the Status object.
         '''
+
         proposed_checkpoint = self.checkpoint + commit_decisions
         await self._broadcast_checkpoint(proposed_checkpoint, 
             'vote', CheckPoint.RECEIVE_CKPT_VOTE)
@@ -329,7 +331,7 @@ class CheckPoint:
             self.checkpoint = json.loads(json_data['ckpt'])
         
 
-    async def receive_sync(sync_ckpt):
+    async def receive_sync(self, sync_ckpt):
         '''
         Trigger when recieve checkpoint synchronization messages.
         input: 
@@ -341,9 +343,10 @@ class CheckPoint:
             }
         '''
         self._log.debug("receive_sync in checkpoint: current next_slot:"
-            " %d; update to: %d" , self.next_slot, json_data['next_slot'])
+            " %d; update to: %d" , self.next_slot, sync_ckpt['next_slot']) #Changed json_data['next_slot'] to sync_ckpt['next_slot']
 
         if sync_ckpt['next_slot'] > self._next_slot:
+           
             self.next_slot = sync_ckpt['next_slot']
             self.checkpoint = json.loads(sync_ckpt['ckpt'])
 
@@ -354,7 +357,7 @@ class CheckPoint:
         '''
         deletes = []
         for hash_ckpt in self._received_votes_by_ckpt:
-            if self._received_votes_by_ckpt[hash_ckpt].next_slot <= next_slot:
+            if self._received_votes_by_ckpt[hash_ckpt].next_slot <= self.next_slot:
                 deletes.append(hash_ckpt)
         for hash_ckpt in deletes:
             del self._received_votes_by_ckpt[hash_ckpt]
@@ -518,6 +521,8 @@ class PBFTHandler:
         self._next_propose_slot = 0
 
         self._blockchain =  Blockchain()
+        self.finished_i=[]
+        self.length_finished_i = []
 
         # tracks if commit_decisions had been commited to blockchain
         self.committed_to_blockchain = False
@@ -688,11 +693,7 @@ class PBFTHandler:
         Handle the request from client if leader, otherwise 
         redirect to the leader.
         '''
-        #self._log.Formatter('[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s','%m-%d %H:%M:%S')
-        #self.log.SetFlags(log.LstdFlags | log.Lshortfile)
-        #self.log.Println("Logging w/ line numbers on golangcode.com")
-        self._log.info(" ---> %d: on request", self._index)
-        #self._root_logger.info("-------- On request ---------")
+        self._log.info("---> %d: on request", self._index)
 
         if not self._is_leader:
             if self._leader != None:
@@ -737,15 +738,14 @@ class PBFTHandler:
             # when receive message with view < follow_view, do nothing
             return web.Response()
 
-        #self._log.info("Date: ",datetime.datetime.now())
         self._log.info("---> %d: receive preprepare msg from %d", 
             self._index, json_data['leader'])
 
         self._log.info("---> %d: on prepare", self._index)
         for slot in json_data['proposal']:
 
-            if not self._legal_slot(slot):
-                continue
+            # if not self._legal_slot(slot):
+            #     continue
 
             if slot not in self._status_by_slot:
                 self._status_by_slot[slot] = Status(self._f)
@@ -791,8 +791,8 @@ class PBFTHandler:
         self._log.info("---> %d: on commit", self._index)
         
         for slot in json_data['proposal']:
-            if not self._legal_slot(slot):
-                continue
+            # if not self._legal_slot(slot):
+            #     continue
 
             if slot not in self._status_by_slot:
                 self._status_by_slot[slot] = Status(self._f)
@@ -833,7 +833,6 @@ class PBFTHandler:
                     'type': 'commit'
                 }
         '''
-        
         json_data = await request.json()
         self._log.info("---> %d: on reply", self._index)
         # print("\t--->node "+str(self._index)+": on reply ")
@@ -847,8 +846,9 @@ class PBFTHandler:
             self._index, json_data['index'])
 
         for slot in json_data['proposal']:
-            if not self._legal_slot(slot):
-                continue
+
+            # if not self._legal_slot(slot):
+            #     continue
 
             if slot not in self._status_by_slot:
                 self._status_by_slot[slot] = Status(self._f)
@@ -862,14 +862,15 @@ class PBFTHandler:
             # Commit only when no commit certificate and got more than 2f + 1
             # commit message.
             if not status.commit_certificate and status._check_majority(json_data['type']):
-                status.commit_certificate = Status.Certificate(view, 
-                    json_data['proposal'][slot])
+                
+                status.commit_certificate = Status.Certificate(view, json_data['proposal'][slot])
 
                 self._log.debug("Add commit certifiacte to slot %d", int(slot))
                 
                 # Reply only once and only when no bubble ahead
+                
                 if self._last_commit_slot == int(slot) - 1 and not status.is_committed:
-
+                    
                     reply_msg = {
                         'index': self._index,
                         'view': json_data['view'],
@@ -912,13 +913,25 @@ class PBFTHandler:
 
         '''
         commit_decisions = []
-        # print(self._ckpt.next_slot, self._last_commit_slot + 1)
-        for i in range(self._ckpt.next_slot, self._last_commit_slot + 1):
+        if self._ckpt.next_slot  and (self._ckpt.next_slot % (self._last_commit_slot + 1) == 0):
+            start_point = self._last_commit_slot + 1 - self._checkpoint_interval
+        else:
+            start_point = self._ckpt.next_slot
+        print(range(start_point,self._last_commit_slot + 1))
+        for i in range(start_point, self._last_commit_slot + 1):
+            
             status = self._status_by_slot[str(i)]
             proposal = status.commit_certificate._proposal 
-
+            
             commit_decisions.append((str(proposal['id']), proposal['data']))
 
+            if i not in self.finished_i:
+                self.finished_i.append(i)
+
+            if len(commit_decisions) == self._checkpoint_interval and len(self.finished_i) not in self.length_finished_i:
+                self.length_finished_i.append(len(self.finished_i))
+                self.committed_to_blockchain = False
+            
         try:
             # if self._index == 3:
                 # print('Node 3 is leader : ', str(self._is_leader))
@@ -959,14 +972,14 @@ class PBFTHandler:
         '''
         Dump the current commit decisions to disk.
         '''
-        self._log.info("--->Dump the current commit decisions to disk")
         # with open("~$node_{}_blockchain.dump".format(self._index), 'w') as f:
-        dump_data = self._ckpt.checkpoint + self.get_commit_decisions()            
+
+        # dump_data = self._ckpt.checkpoint + self.get_commit_decisions()            
             # json.dump(dump_data, f)
         # try:
-        with open("node_{}.blockchain".format(self._index), 'a') as f:
+        with open("$node_{}.blockchain".format(self._index), 'a') as f:
             # f.write(str(dump_data)+'\n\n------------\n\n')
-            print('node :' + str(self._index) +' > '+str(self._blockchain.commit_counter)+' : '+str(self._blockchain.length))
+            # print('node :' + str(self._index) +' > '+str(self._blockchain.commit_counter)+' : '+str(self._blockchain.length))
             for i in range(self._blockchain.commit_counter, self._blockchain.length):
                 f.write(str(self._blockchain.chain[i].get_json())+'\n------------\n')
                 self._blockchain.update_commit_counter()
@@ -992,7 +1005,6 @@ class PBFTHandler:
         # print ()
         # print ()
         # print ('json_data')
-        # print(json_data)
         # print ()
         # print ()
         # # print ('ckpt')
@@ -1035,7 +1047,7 @@ class PBFTHandler:
             self.committed_to_blockchain = False
         except Exception as e:
             traceback.print_exc()
-            print('for i = ' +str(i))
+            # print('for i = ' +str(self.i)) -- Commented out by me
             print(e)
 
 
@@ -1067,6 +1079,7 @@ class PBFTHandler:
         # Commit once the next slot of the last_commit_slot get commit certificate
         while (str(self._last_commit_slot + 1) in self._status_by_slot and 
                 self._status_by_slot[str(self._last_commit_slot + 1)].commit_certificate):
+
             self._last_commit_slot += 1
 
             # When commit messages fill the next checkpoint, 
@@ -1077,7 +1090,7 @@ class PBFTHandler:
                 self._log.info("---> %d: During rev_sync, Propose checkpoint with l "
                     "ast slot: %d. In addition, current checkpoint's next_slot is: %d", 
                     self._index, self._last_commit_slot, self._ckpt.next_slot)
-
+            
         await self._commit_action()
 
         return web.Response()
@@ -1313,19 +1326,11 @@ def logging_config(log_level=logging.ERROR, log_file=None):
     root_logger.setLevel(log_level)
 
     f = logging.Formatter("[%(levelname)s]%(module)s->%(funcName)s: \t %(message)s \t --- %(asctime)s")
-    #f = logging.Formatter('[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s','%m-%d %H:%M:%S')
-    
-    #f = logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
-    #datefmt='%Y-%m-%d:%H:%M:%S')
-
-    #logging.info("************* TESTING LOG ******************")
 
     h = logging.StreamHandler()
     h.setFormatter(f)
     h.setLevel(log_level)
     root_logger.addHandler(h)
-
-    
 
     if log_file:
         from logging.handlers import TimedRotatingFileHandler
@@ -1333,8 +1338,6 @@ def logging_config(log_level=logging.ERROR, log_file=None):
         h.setFormatter(f)
         h.setLevel(log_level)
         root_logger.addHandler(h)
-
-   
 
 def str2bool(v):
     if isinstance(v, bool):
@@ -1401,14 +1404,8 @@ def conf_parse(conf_file) -> dict:
 def main():
     args = arg_parse()
     if args.log_to_file:
-        '''
-        logging.basicConfig(filename='node_' + str(args.index)+'.log',
+        logging.basicConfig(filename='$node_' + str(args.index)+'.log',
                             filemode='a', level=logging.DEBUG)
-        '''
-        logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
-                datefmt='%Y-%m-%d:%H:%M:%S',
-                filename='node_' + str(args.index)+'.log',
-                filemode='a', level=logging.DEBUG)                     
     logging_config()
     log = logging.getLogger()
     conf = conf_parse(args.config)
