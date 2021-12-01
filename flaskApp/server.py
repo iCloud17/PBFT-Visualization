@@ -44,3 +44,16 @@ def introPage():
 def pbftPage():
     messageData = rh.parseJSONfile()
     return render_template('pbft.html')
+
+@app.route("/startPBFT", methods=['GET', 'POST'])
+def startPBFT():
+    # POST request
+    if request.method == 'POST':
+        print('Incoming..',request.get_json())
+        rh.runPBFTAlgo(request.get_json())
+        return 'OK', 200
+
+    # GET request
+    else:
+        message = {'greeting':'Hello from Flask!'}
+        return jsonify(message)  # serialize and use JSON headers
