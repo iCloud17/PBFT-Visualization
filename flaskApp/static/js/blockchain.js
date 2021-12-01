@@ -18,6 +18,30 @@
         const phases = ['request', 'preprepare', 'prepare', 'commit', 'reply'];
         let drawnArrows = false;
 
+        blockchain.addEventListener('mouseenter', function() {
+            blockchain.classList.add('hovering');
+            if(!drawnArrows) {
+                setTimeout(function () {
+                    if(blockchain.classList.contains('hovering')) {
+                        setTimeout(drawAllArrows, 1900);
+                    }
+                }, 100);
+            }
+        });
+
+        blockchain.addEventListener('mouseleave', function() {
+            blockchain.classList.remove('hovering');
+            if(drawnArrows) {
+                setTimeout(function () {
+                    if(!blockchain.classList.contains('hovering')) {
+                        removeAllArrows();
+                    }
+                }, 100);
+            }
+        });
+
+        //#region parsing data
+
         function loadPage(data) {
             for(let i = 1; i <= data.replicas; i++) {
                 let replica = document.createElement('li');
@@ -96,7 +120,17 @@
                 blockchain.appendChild(div);
             }
             blocks = blockchain.querySelectorAll('.block');
+            blocks.forEach(block => {
+                block.addEventListener('mouseenter', function() {
+                    blockchain.classList.add('hovering');
+                })
+                block.addEventListener('mouseleave', function() {
+                    blockchain.classList.remove('hovering');
+                })
+            })
         }
+
+        //#endregion
 
         //#region Arrow Functions--------------------------
         
@@ -152,6 +186,20 @@
                 y: element.getBoundingClientRect().top - parent.getBoundingClientRect().top + element.offsetHeight
             };
             return obj;
+        }
+
+        function drawAllArrows() {
+            for(let i = 1; i < blocks.length; i++) {
+                drawArrow(i - 1, i, phases[i%phases.length]);
+            }
+            drawnArrows = true;
+        }
+
+        function removeAllArrows() {
+            blockchain.querySelectorAll('.arrow').forEach(arrow => {
+                blockchain.removeChild(arrow);
+            });
+            drawnArrows = false;
         }
 
         function drawArrow(b1, b2, phase) {
