@@ -41,4 +41,5 @@ rm -rf pbft.yaml
 
 rm -rf my_file.txt
 
-sudo rm -rf __pycache__
+
+rm -rf __pycache__

@@ -64,36 +64,52 @@ def parseJSONfile():
 #     }
 
 def runPBFTAlgo(json):
-    json['no_of_messages'] = 2
-    json['message'] = ['a','b']
-    json['ckpt_interval'] = 1
-    json['no_of_nodes'] = 4
+
     #Create trial.sh
-    with open('dynamic_trial.sh', mode='a+', encoding='utf-8') as post_data:
-        os.chmod('dynamic_trial.sh',0o0777)
+    print("OS CWD =======", os.getcwd())
+
+    root_path = os.getcwd()+'/flaskApp/pbft/'
+
+    for root,dirs,files in os.walk(root_path):
+        for d in dirs:
+            os.chmod(os.path.join(root,d),0o777)
+        for f in files:
+            os.chmod(os.path.join(root,f),0o777)
+
+    os.chdir(root_path)
+
+    subprocess.call(os.getcwd() + '/clean.sh')
+    
+    path=os.getcwd()+'/dynamic_trial.sh'
+
+    with open(path, mode='a+', encoding='utf-8') as post_data:
+        os.chmod(path,0o777)
         post_data.write('#!/bin/sh\n')
-        for i in range(json['no_of_messages']):
-            post_request = '{ "id":"(0, %s)", "client_url":"http://localhost:20030/reply","timestamp":%s,"data":"%s"}' % (i, time.time(), json['message'][i])
+        for i in range(int(json['request'])):
+            post_request = '{ "id":"(0, %s)", "client_url":"http://localhost:20030/reply","timestamp":%s,"data":"%s"}' % (i, time.time(), json['msg'][i])
             request_string = 'curl -vLX POST --data \'' + post_request + '\' http://localhost:30001/request\n'
             post_data.write("\n"+request_string+"\nsleep 5\n")
     
     port_numbers = 30000
-    
-    with open('pbft.yaml', mode='a+', encoding='utf-8') as create_yaml:
+    yaml_path = os.getcwd()+'/pbft.yaml'
+    with open(yaml_path, mode='a+', encoding='utf-8') as create_yaml:
+        os.chmod(yaml_path,0o777)
         create_yaml.write('nodes:')
-        for i in range(json['no_of_nodes']):
+        for i in range(int(json['replicas'])):
             create_yaml.write('\n    - host: localhost\n      port: %d'%(port_numbers+i+1))
         create_yaml.write('\n\nclients:\n    - host: localhost\n      port: 20030')
         create_yaml.write('\n\nloss%: 0')
-        create_yaml.write('\n\nckpt_interval: %d'%(json['ckpt_interval']))
+        create_yaml.write('\n\nckpt_interval: %d'%(int(json['ckpt'])))
         create_yaml.write('\n\nretry_times_before_view_change: 2\n\nsync_interval: 5\n\nmisc:\n    network_timeout: 100')
 
     #Run the PBFT script
-
-    subprocess.call(os.path.abspath(os.getcwd())+'/run.sh')
+    
+    subprocess.call(os.getcwd() + '/run.sh')
+    os.chdir('../../')
+    print("OS CWD =======", os.getcwd())
 
 def runSendRequest(json):
-    subprocess.call(os.path.abspath(os.getcwd())+'/dynamic_trial.sh')
+    subprocess.call(os.path.abspath(os.getcwd())+'/flaskApp/pbft/dynamic_trial.sh')
         
 
 if __name__== "__main__":

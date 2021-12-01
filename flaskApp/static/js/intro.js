@@ -33,6 +33,9 @@
         
             console.log('POST response: ');
             // Should be 'OK' if everything was successful
+            if(text === 'OK') {
+                window.location.href = 'pbft.html';
+            }
             console.log(text);
         });
     }

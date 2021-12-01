@@ -11,8 +11,7 @@ def node():
     # POST request
     if request.method == 'POST':
         print('Incoming..')
-        rh.getNodeData(request.get_json())
-        return 'OK', 200
+        return rh.getNodeData(request.get_json())
 
     # GET request
     else:
@@ -25,8 +24,7 @@ def msg():
     # POST request
     if request.method == 'POST':
         print('Incoming..')
-        rh.getMsgData(request.get_json())
-        return 'OK', 200
+        return rh.getMsgData(request.get_json())
 
     # GET request
     else:
