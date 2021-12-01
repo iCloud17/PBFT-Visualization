@@ -82,6 +82,7 @@
 #restOfPage {
     flex: 7;
     z-index: 3;
+    position: relative;
 }
 
 #header {
@@ -210,4 +211,37 @@
 #submitBtn:hover {
     outline-color: #e6e6e6;
     animation-play-state: paused;
+}
+
+.hidden {
+    display: none !important;
+    opacity: 0;
+}
+
+.showing {
+    display: block !important;
+    opacity: 1;
+}
+
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4a484b;
+    z-index: 30;
+    transition: all 3s;
+}
+
+#loadingOverlay > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
+
+#loadingOverlay > #fixedWrapper > img {
+    position: fixed;
 }

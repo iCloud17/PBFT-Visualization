@@ -42,9 +42,11 @@
 
     const form = document.getElementById('pbftInputs');
     const inputs = form.querySelectorAll('input');
+    const overlay = document.getElementById('loadingOverlay');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         console.log(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value,inputs[5].value);
+        overlay.className = 'showing';
         runningPBFT(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value,inputs[5].value);
     });
 }());

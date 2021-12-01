@@ -259,9 +259,13 @@
 				</ul>
 				<p class="copyright">&copy; Untitled. Credits: <a href="http://html5up.net">HTML5 UP</a></p>
 			</footer>
+
 		</div>
 	</div>
-
+	<!-- Overlay -->
+	<div id="loadingOverlay" class="hidden">
+		<img src="{{ url_for('static', filename='img/sliding_square_loader_view.gif') }}" alt="Loader">
+	</div>
 	<!-- Scripts -->
 	<script src="{{ url_for('static', filename='js/assets/jquery.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/assets/jquery.scrolly.min.js') }}"></script>

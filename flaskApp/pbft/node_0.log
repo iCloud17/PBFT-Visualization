@@ -1,0 +1,236 @@
+2021-12-01:02:29:23,102 DEBUG    [node.py:1480] {'nodes': [{'host': 'localhost', 'port': 30001}, {'host': 'localhost', 'port': 30002}, {'host': 'localhost', 'port': 30003}, {'host': 'localhost', 'port': 30004}], 'clients': [{'host': 'localhost', 'port': 20030}], 'loss%': 0, 'ckpt_interval': 1, 'retry_times_before_view_change': 2, 'sync_interval': 5, 'misc': {'network_timeout': 100}}
+2021-12-01:02:29:23,109 INFO     [node.py:183] ---> 0: Create checkpoint.
+2021-12-01:02:29:23,119 DEBUG    [selector_events.py:59] Using selector: EpollSelector
+2021-12-01:02:29:23,125 DEBUG    [selector_events.py:59] Using selector: EpollSelector
+2021-12-01:02:29:23,188 ERROR    [base_events.py:1707] Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<PBFTHandler.synchronize() running at ./node.py:1163>>
+2021-12-01:02:29:23,193 ERROR    [base_events.py:1707] Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<PBFTHandler.garbage_collection() running at ./node.py:1360>>
+2021-12-01:02:29:35,69 INFO     [node.py:739] ---> 0: handling request from client
+2021-12-01:02:29:35,70 INFO     [node.py:705] ---> 0: ################## PREPREPARED START ###################
+2021-12-01:02:29:35,70 INFO     [node.py:712] ---> 0: on preprepare, propose at slot: 0
+2021-12-01:02:29:35,70 INFO     [node.py:728] ---> 0: -------- BROADCASTING PREPREPARED MESSAGE TO ALL NODES -------
+2021-12-01:02:29:35,71 DEBUG    [node.py:639] make request to 0, prepare
+2021-12-01:02:29:35,82 INFO     [node.py:788] ---> 0: ################## PREPARED START ###################
+2021-12-01:02:29:35,84 INFO     [node.py:795] ---> 0: receive preprepare msg from 0
+2021-12-01:02:29:35,84 INFO     [node.py:798] ---> 0: on prepare
+2021-12-01:02:29:35,84 INFO     [node.py:815] ---> 0: -------- BROADCASTING PREPARED MESSAGE TO ALL NODES -------
+2021-12-01:02:29:35,84 DEBUG    [node.py:639] make request to 0, commit
+2021-12-01:02:29:35,94 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:35,98 INFO     [node.py:838] ---> 0: receive prepare msg from 0
+2021-12-01:02:29:35,98 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:35,113 DEBUG    [node.py:639] make request to 1, commit
+2021-12-01:02:29:35,117 DEBUG    [node.py:639] make request to 2, commit
+2021-12-01:02:29:35,124 DEBUG    [node.py:639] make request to 3, commit
+2021-12-01:02:29:35,148 DEBUG    [node.py:639] make request to 1, prepare
+2021-12-01:02:29:35,153 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:35,153 INFO     [node.py:838] ---> 0: receive prepare msg from 1
+2021-12-01:02:29:35,153 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:35,184 DEBUG    [node.py:639] make request to 2, prepare
+2021-12-01:02:29:35,203 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:35,203 INFO     [node.py:838] ---> 0: receive prepare msg from 2
+2021-12-01:02:29:35,203 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:35,204 DEBUG    [node.py:639] make request to 0, reply
+2021-12-01:02:29:35,209 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,210 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,210 INFO     [node.py:905] ---> 0: receive commit msg from 0
+2021-12-01:02:29:35,211 DEBUG    [node.py:639] make request to 1, reply
+2021-12-01:02:29:35,232 DEBUG    [node.py:639] make request to 2, reply
+2021-12-01:02:29:35,236 DEBUG    [node.py:639] make request to 3, reply
+2021-12-01:02:29:35,250 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,251 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,251 INFO     [node.py:905] ---> 0: receive commit msg from 1
+2021-12-01:02:29:35,301 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,301 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,301 INFO     [node.py:905] ---> 0: receive commit msg from 2
+2021-12-01:02:29:35,302 DEBUG    [node.py:930] Add commit certifiacte to slot 0
+2021-12-01:02:29:35,302 DEBUG    [node.py:276] sending request to 0, receive_ckpt_vote
+2021-12-01:02:29:35,305 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:35,317 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:35,319 DEBUG    [node.py:276] sending request to 1, receive_ckpt_vote
+2021-12-01:02:29:35,325 DEBUG    [node.py:276] sending request to 2, receive_ckpt_vote
+2021-12-01:02:29:35,331 DEBUG    [node.py:276] sending request to 3, receive_ckpt_vote
+2021-12-01:02:29:35,354 INFO     [node.py:949] ---> 0: Propose checkpoint with last slot: 0. In addition, current checkpoint's next_slot is: 0
+2021-12-01:02:29:35,369 INFO     [node.py:965] 0 reply to http://localhost:20030/reply successfully!!
+2021-12-01:02:29:35,376 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:35,400 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:35,461 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:35,462 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:35,462 INFO     [node.py:239] ---> 0: Update checkpoint by receiving votes
+2021-12-01:02:29:35,552 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:35,553 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:35,634 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,634 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,634 INFO     [node.py:905] ---> 0: receive commit msg from 3
+2021-12-01:02:29:35,661 DEBUG    [node.py:639] make request to 3, prepare
+2021-12-01:02:29:35,665 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:35,665 INFO     [node.py:838] ---> 0: receive prepare msg from 3
+2021-12-01:02:29:35,665 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:35,665 DEBUG    [node.py:639] make request to 0, reply
+2021-12-01:02:29:35,666 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,666 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,667 INFO     [node.py:905] ---> 0: receive commit msg from 0
+2021-12-01:02:29:35,667 DEBUG    [node.py:639] make request to 1, reply
+2021-12-01:02:29:35,669 DEBUG    [node.py:639] make request to 2, reply
+2021-12-01:02:29:35,684 DEBUG    [node.py:639] make request to 3, reply
+2021-12-01:02:29:35,719 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,719 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,719 INFO     [node.py:905] ---> 0: receive commit msg from 1
+2021-12-01:02:29:35,734 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,735 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,735 INFO     [node.py:905] ---> 0: receive commit msg from 2
+2021-12-01:02:29:35,777 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:35,779 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:35,779 INFO     [node.py:905] ---> 0: receive commit msg from 3
+2021-12-01:02:29:40,951 INFO     [node.py:739] ---> 0: handling request from client
+2021-12-01:02:29:40,952 INFO     [node.py:705] ---> 0: ################## PREPREPARED START ###################
+2021-12-01:02:29:40,954 INFO     [node.py:712] ---> 0: on preprepare, propose at slot: 1
+2021-12-01:02:29:40,954 INFO     [node.py:728] ---> 0: -------- BROADCASTING PREPREPARED MESSAGE TO ALL NODES -------
+2021-12-01:02:29:40,954 DEBUG    [node.py:639] make request to 0, prepare
+2021-12-01:02:29:40,958 INFO     [node.py:788] ---> 0: ################## PREPARED START ###################
+2021-12-01:02:29:40,958 INFO     [node.py:795] ---> 0: receive preprepare msg from 0
+2021-12-01:02:29:40,958 INFO     [node.py:798] ---> 0: on prepare
+2021-12-01:02:29:40,958 INFO     [node.py:815] ---> 0: -------- BROADCASTING PREPARED MESSAGE TO ALL NODES -------
+2021-12-01:02:29:40,959 DEBUG    [node.py:639] make request to 0, commit
+2021-12-01:02:29:40,960 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:40,960 INFO     [node.py:838] ---> 0: receive prepare msg from 0
+2021-12-01:02:29:40,960 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:40,961 DEBUG    [node.py:639] make request to 1, commit
+2021-12-01:02:29:40,964 DEBUG    [node.py:639] make request to 2, commit
+2021-12-01:02:29:40,991 DEBUG    [node.py:639] make request to 3, commit
+2021-12-01:02:29:41,2 DEBUG    [node.py:639] make request to 1, prepare
+2021-12-01:02:29:41,17 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:41,28 INFO     [node.py:838] ---> 0: receive prepare msg from 1
+2021-12-01:02:29:41,34 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:41,46 DEBUG    [node.py:639] make request to 2, prepare
+2021-12-01:02:29:41,51 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:41,55 INFO     [node.py:838] ---> 0: receive prepare msg from 2
+2021-12-01:02:29:41,55 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:41,56 DEBUG    [node.py:639] make request to 0, reply
+2021-12-01:02:29:41,61 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,69 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,81 INFO     [node.py:905] ---> 0: receive commit msg from 0
+2021-12-01:02:29:41,82 DEBUG    [node.py:639] make request to 1, reply
+2021-12-01:02:29:41,86 DEBUG    [node.py:639] make request to 2, reply
+2021-12-01:02:29:41,94 DEBUG    [node.py:639] make request to 3, reply
+2021-12-01:02:29:41,116 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,119 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,120 INFO     [node.py:905] ---> 0: receive commit msg from 1
+2021-12-01:02:29:41,151 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,152 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,152 INFO     [node.py:905] ---> 0: receive commit msg from 2
+2021-12-01:02:29:41,152 DEBUG    [node.py:930] Add commit certifiacte to slot 1
+2021-12-01:02:29:41,152 DEBUG    [node.py:276] sending request to 0, receive_ckpt_vote
+2021-12-01:02:29:41,153 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:41,154 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:41,154 DEBUG    [node.py:276] sending request to 1, receive_ckpt_vote
+2021-12-01:02:29:41,157 DEBUG    [node.py:276] sending request to 2, receive_ckpt_vote
+2021-12-01:02:29:41,161 DEBUG    [node.py:276] sending request to 3, receive_ckpt_vote
+2021-12-01:02:29:41,173 INFO     [node.py:949] ---> 0: Propose checkpoint with last slot: 1. In addition, current checkpoint's next_slot is: 1
+2021-12-01:02:29:41,191 INFO     [node.py:965] 0 reply to http://localhost:20030/reply successfully!!
+2021-12-01:02:29:41,197 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:41,198 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:41,241 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:41,242 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:41,242 INFO     [node.py:239] ---> 0: Update checkpoint by receiving votes
+2021-12-01:02:29:41,322 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:41,322 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:41,366 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,366 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,366 INFO     [node.py:905] ---> 0: receive commit msg from 3
+2021-12-01:02:29:41,399 DEBUG    [node.py:639] make request to 3, prepare
+2021-12-01:02:29:41,405 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:41,405 INFO     [node.py:838] ---> 0: receive prepare msg from 3
+2021-12-01:02:29:41,406 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:41,406 DEBUG    [node.py:639] make request to 0, reply
+2021-12-01:02:29:41,408 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,408 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,408 INFO     [node.py:905] ---> 0: receive commit msg from 0
+2021-12-01:02:29:41,412 DEBUG    [node.py:639] make request to 1, reply
+2021-12-01:02:29:41,433 DEBUG    [node.py:639] make request to 2, reply
+2021-12-01:02:29:41,438 DEBUG    [node.py:639] make request to 3, reply
+2021-12-01:02:29:41,460 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,460 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,460 INFO     [node.py:905] ---> 0: receive commit msg from 1
+2021-12-01:02:29:41,498 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,499 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,499 INFO     [node.py:905] ---> 0: receive commit msg from 2
+2021-12-01:02:29:41,523 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:41,528 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:41,529 INFO     [node.py:905] ---> 0: receive commit msg from 3
+2021-12-01:02:29:46,596 INFO     [node.py:739] ---> 0: handling request from client
+2021-12-01:02:29:46,597 INFO     [node.py:705] ---> 0: ################## PREPREPARED START ###################
+2021-12-01:02:29:46,597 INFO     [node.py:712] ---> 0: on preprepare, propose at slot: 2
+2021-12-01:02:29:46,597 INFO     [node.py:728] ---> 0: -------- BROADCASTING PREPREPARED MESSAGE TO ALL NODES -------
+2021-12-01:02:29:46,597 DEBUG    [node.py:639] make request to 0, prepare
+2021-12-01:02:29:46,598 INFO     [node.py:788] ---> 0: ################## PREPARED START ###################
+2021-12-01:02:29:46,598 INFO     [node.py:795] ---> 0: receive preprepare msg from 0
+2021-12-01:02:29:46,598 INFO     [node.py:798] ---> 0: on prepare
+2021-12-01:02:29:46,598 INFO     [node.py:815] ---> 0: -------- BROADCASTING PREPARED MESSAGE TO ALL NODES -------
+2021-12-01:02:29:46,598 DEBUG    [node.py:639] make request to 0, commit
+2021-12-01:02:29:46,599 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:46,599 INFO     [node.py:838] ---> 0: receive prepare msg from 0
+2021-12-01:02:29:46,599 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:46,600 DEBUG    [node.py:639] make request to 1, commit
+2021-12-01:02:29:46,603 DEBUG    [node.py:639] make request to 2, commit
+2021-12-01:02:29:46,611 DEBUG    [node.py:639] make request to 3, commit
+2021-12-01:02:29:46,620 DEBUG    [node.py:639] make request to 1, prepare
+2021-12-01:02:29:46,634 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:46,637 INFO     [node.py:838] ---> 0: receive prepare msg from 1
+2021-12-01:02:29:46,638 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:46,674 DEBUG    [node.py:639] make request to 2, prepare
+2021-12-01:02:29:46,678 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:46,678 INFO     [node.py:838] ---> 0: receive prepare msg from 2
+2021-12-01:02:29:46,678 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:46,678 DEBUG    [node.py:639] make request to 0, reply
+2021-12-01:02:29:46,679 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:46,679 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:46,679 INFO     [node.py:905] ---> 0: receive commit msg from 0
+2021-12-01:02:29:46,680 DEBUG    [node.py:639] make request to 1, reply
+2021-12-01:02:29:46,687 DEBUG    [node.py:639] make request to 2, reply
+2021-12-01:02:29:46,693 DEBUG    [node.py:639] make request to 3, reply
+2021-12-01:02:29:46,708 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:46,713 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:46,713 INFO     [node.py:905] ---> 0: receive commit msg from 1
+2021-12-01:02:29:46,746 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:46,746 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:46,746 INFO     [node.py:905] ---> 0: receive commit msg from 2
+2021-12-01:02:29:46,746 DEBUG    [node.py:930] Add commit certifiacte to slot 2
+2021-12-01:02:29:46,748 DEBUG    [node.py:276] sending request to 0, receive_ckpt_vote
+2021-12-01:02:29:46,751 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:46,753 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:46,754 DEBUG    [node.py:276] sending request to 1, receive_ckpt_vote
+2021-12-01:02:29:46,758 DEBUG    [node.py:276] sending request to 2, receive_ckpt_vote
+2021-12-01:02:29:46,774 DEBUG    [node.py:276] sending request to 3, receive_ckpt_vote
+2021-12-01:02:29:46,787 INFO     [node.py:949] ---> 0: Propose checkpoint with last slot: 2. In addition, current checkpoint's next_slot is: 2
+2021-12-01:02:29:46,816 INFO     [node.py:965] 0 reply to http://localhost:20030/reply successfully!!
+2021-12-01:02:29:46,827 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:46,827 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:46,892 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:46,892 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:46,892 INFO     [node.py:239] ---> 0: Update checkpoint by receiving votes
+2021-12-01:02:29:46,986 INFO     [node.py:1066] ---> 0: receive checkpoint vote.
+2021-12-01:02:29:46,986 DEBUG    [node.py:225] ---> 0: Receive checkpoint votes
+2021-12-01:02:29:47,50 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:47,50 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:47,50 INFO     [node.py:905] ---> 0: receive commit msg from 3
+2021-12-01:02:29:47,104 DEBUG    [node.py:639] make request to 3, prepare
+2021-12-01:02:29:47,116 INFO     [node.py:836] ---> 0: ################## COMMIT START ###################
+2021-12-01:02:29:47,116 INFO     [node.py:838] ---> 0: receive prepare msg from 3
+2021-12-01:02:29:47,116 INFO     [node.py:849] ---> 0: on commit
+2021-12-01:02:29:47,116 DEBUG    [node.py:639] make request to 0, reply
+2021-12-01:02:29:47,122 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:47,122 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:47,122 INFO     [node.py:905] ---> 0: receive commit msg from 0
+2021-12-01:02:29:47,123 DEBUG    [node.py:639] make request to 1, reply
+2021-12-01:02:29:47,137 DEBUG    [node.py:639] make request to 2, reply
+2021-12-01:02:29:47,152 DEBUG    [node.py:639] make request to 3, reply
+2021-12-01:02:29:47,179 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:47,180 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:47,180 INFO     [node.py:905] ---> 0: receive commit msg from 1
+2021-12-01:02:29:47,270 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:47,270 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:47,270 INFO     [node.py:905] ---> 0: receive commit msg from 2
+2021-12-01:02:29:47,336 INFO     [node.py:895] ---> 0: ################## REPLY START ###################
+2021-12-01:02:29:47,336 INFO     [node.py:897] ---> 0: on reply
+2021-12-01:02:29:47,336 INFO     [node.py:905] ---> 0: receive commit msg from 3
