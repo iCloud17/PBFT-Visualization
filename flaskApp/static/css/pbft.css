@@ -1,0 +1,216 @@
+#pbftTable {
+    width: 100%;
+    border: 2px solid #333;
+    border-radius: 2%;
+    padding: 2.5%;
+}
+
+#pbftTable table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+#pbftTable th, #pbftTable td {
+    position: relative !important;
+    border-right: 2px dashed black !important;
+    padding: 3% !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+#pbftTable th {
+    font-size: 1.3em !important;
+    border-bottom: 2px solid black !important;
+}
+
+#pbftTable td {
+    font-size: 1.1em !important;
+    border-bottom: 2px solid black !important;
+}
+
+#pbftTable .lastCol {
+    border-right: none !important;
+}
+
+#pbftTable .node {
+    position: absolute !important;
+    border: 3px solid green !important;
+    border-radius: 100% !important;
+    background-color: white !important;
+    width: fit-content !important;
+    padding: 7% !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 2 !important;
+    font-size: 1.1em !important;
+}
+
+#pbftTable .corner {
+    position: absolute !important;
+    background-color: blue !important;
+    opacity: 0 !important;
+    border-radius: 100% !important;
+    height: 20px !important;
+    width: 20px !important;
+    top: 100% !important;
+    left: 100% !important;
+    z-index: 10 !important;
+    transform: translate(-50%, -50%) !important;
+    cursor: pointer !important;
+}
+
+/* KEEP ABOVE ARROW CSS */
+/* -------------------------------PHASE COLORS CSS------------------------------- */
+
+#pbftTable .request {
+    background-color: #2364AA;
+    border-left-color: #2364AA;
+    animation-duration: 6s;
+}
+
+#pbftTable .preprepare {
+    background-color: #EA7317;
+    border-left-color: #EA7317;
+    animation-duration: 9s;
+}
+
+#pbftTable .prepare {
+    background-color: #358600;
+    border-left-color: #358600;
+    animation-duration: 8s;
+}
+
+#pbftTable .commit {
+    background-color: #3DA5D9;
+    border-left-color: #3DA5D9;
+    animation-duration: 7s;
+}
+
+#pbftTable .reply {
+    background-color: #FEC601;
+    border-left-color: #FEC601;
+    animation-duration: 10s;
+}
+
+/* ----------------------------------ARROW CSS---------------------------------- */
+
+#pbftTable .arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: visible;
+}
+
+#pbftTable .line, .head {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+#pbftTable .line {
+    height: 3px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    border: none;
+}
+
+#pbftTable .head {
+    width: 0;
+    height: 0;
+    background-color: transparent;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left-width: 15px;
+    border-left-style: solid;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#pbftTable .msgBall {
+    margin: 0;
+    padding: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    background-color: inherit;
+    transform: translateY(-35%);
+    animation-name: travel;
+    animation-duration: inherit;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes travel {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ------------------------------Overwriting page css------------------------------ */
+.wrapper {
+    padding-top: 2em;
+}
+
+.wrapper > .inner {
+    width: 70em;
+}
+
+.console > ul {
+    text-align: left;
+    margin-bottom: 0.75em;
+}
+
+.icon > .label {
+    display: inline-block;
+    color: #888888;
+}
+
+ul.icons.major li .icon:before {
+    font-size: 2rem;
+}
+
+header.major {
+    margin-bottom: 1em;
+}
+
+header.major:after {
+    margin: 0;
+}
+
+.wrapper.style2 .icon {
+    color: #888888;
+    font-size: 1.5rem;
+}
+
+/* Console Output */
+
+#consoleOp {
+    width: 100%;
+    height: 50vh;
+    border: 3px solid black;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white;
+    padding: 1%;
+    font-family: 'Fira Code', monospace;
+    color: #292929;
+}
+
+#consoleOp > p {
+    text-align: left;
+}

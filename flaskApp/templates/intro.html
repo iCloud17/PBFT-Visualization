@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<!--
+	Fractal by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>PBFT Visualization</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- <link rel="stylesheet" href="{{url_for('static', filename = 'css/fontawesome_min.css')}}" type="text/css">s -->
+		<script src="{{ url_for('static', filename='css/assets/fontawesome/js/fontawesome.js')}}"></script>
+		<script src="{{ url_for('static', filename='css/assets/fontawesome/js/solid.js')}}"></script>
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/assets/main.css') }}">
+		<noscript></noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/assets/noscript.css') }}"></noscript>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/intro.css') }}">
+	</head>
+	<body class="is-preload">
+		<div class="hnavbar" id="navbar">
+			<ul>
+				<li><a class="active" href="#home">Intro</a></li>
+				<li><a href="pbft.html">Main</a></li>
+				<li><a href="#contact">Blockchain</a></li>
+				<li><a href="#about">Blockchain Playground</a></li>
+			  </ul>
+		</div>
+		<div id="horiSplit">
+			<div class="vnavbar" id="verNavBar">
+				<ul>
+					<li><a class="active" href="#PBFT_Visualization">PBFT Visualization</a></li>
+					<li><a href="#algoWorking">Algorithm Working</a></li>
+					<li><a href="#ourProj">Our Project</a></li>
+					<li><a href="#pbftInstr">PBFT Instructions</a></li>
+					<li><a href="#runPBFT">Run PBFT</a></li>
+					<li><a href="#about">About Us</a></li>
+				</ul>
+			</div>
+			<div id="restOfPage">
+				<!-- Header -->
+				<header id="header">
+					<div id="darkbg"></div>
+					<div class="content">
+						<h1><a id="PBFT_Visualization" href="#">PBFT Visualization</a></h1>
+						<div id="headerP">
+							<p>
+								Just a simple visualization of the <br />
+								PBFT consensus algorithm
+							</p>
+							<div id="vLine"></div>
+						</div>
+						<p id="credits">
+							-A project by Baadal Bhojak, Pon Izhanathi, Kalyan Valiveti, Chalmuri Mayuri Naidu, Rajat Jalal
+						</p>
+					</div>
+				</header>
+
+			<!-- One -->
+				<section id="one" class="wrapper style2 special">
+					<header class="major">
+						<h2>Sed ipsum magna lorem tempus amet<br />
+						vehicula et gravida elementum</h2>
+					</header>
+					<ul class="icons major">
+						<li><span class="icon solid fas fa-camera-retro"><span class="label">Shoot</span></span></li>
+						<li><span class="icon solid fas fa-sync"><span class="label">Process</span></span></li>
+						<li><span class="icon solid fas fa-cloud"><span class="label">Upload</span></span></li>
+					</ul>
+				</section>
+
+			<!-- Two -->
+				<section id="two" class="wrapper">
+					<div class="inner alt">
+						<section class="mySection" id="algoWorking">
+							<h3>PBFT Algorithm Working</h3>
+							<div class="image"><img src="{{ url_for('static', filename='img/pbft.png') }}" alt="PBFT"></div>
+							<div class="content">
+								<p>
+									Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In convallis amet leo non sapien iaculis efficitur consequat lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos eveniet accusantium impedit repellat. Unde, exercitationem architecto porro voluptate hic officia reprehenderit similique sequi odit. Unde sapiente distinctio ea ipsam eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem magni adipisci accusantium molestiae quo ducimus, laudantium alias consequatur non nisi, porro, et libero. Necessitatibus, natus minima! Commodi quibusdam soluta voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit cumque et natus temporibus. Reiciendis, nam saepe! Magni recusandae tempora sint iste doloribus, consequatur similique? Tenetur dignissimos nam vel alias inventore? Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum dolor suscipit minus eos ex quo iusto doloremque veritatis, repudiandae et facere nemo? Mollitia suscipit molestiae libero, aliquid ullam molestias excepturi.
+								</p>
+							</div>
+						</section>
+						<section class="mySection" id="ourProj">
+							<h3>Our Project</h3>
+							<div class="image"><img src="{{ url_for('static', filename='img/pbft.png') }}" alt="PBFT"></div>
+							<div class="content">
+								<p>
+									Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In convallis amet leo non sapien iaculis efficitur consequat lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos eveniet accusantium impedit repellat. Unde, exercitationem architecto porro voluptate hic officia reprehenderit similique sequi odit. Unde sapiente distinctio ea ipsam eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem magni adipisci accusantium molestiae quo ducimus, laudantium alias consequatur non nisi, porro, et libero. Necessitatibus, natus minima! Commodi quibusdam soluta voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit cumque et natus temporibus. Reiciendis, nam saepe! Magni recusandae tempora sint iste doloribus, consequatur similique? Tenetur dignissimos nam vel alias inventore? Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum dolor suscipit minus eos ex quo iusto doloremque veritatis, repudiandae et facere nemo? Mollitia suscipit molestiae libero, aliquid ullam molestias excepturi.
+								</p>
+							</div>
+						</section>
+						<section class="mySection" id="pbftInstr">
+							<h3>PBFT Instructions</h3>
+							<div class="image"><img src="{{ url_for('static', filename='img/pbft.png') }}" alt="PBFT"></div>
+							<div class="content ourInputs">
+								<p>
+									Explain all our inputs:
+								</p>
+								<ol>
+									<li>
+										<span>message</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis libero odit ex placeat? Iste ullam voluptatibus ea qui consequuntur ad aliquid laboriosam, reiciendis est omnis enim corporis libero harum ducimus.
+									</li>
+									<li>
+										<span>nodes</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, praesentium? Suscipit totam deserunt magni assumenda ab facilis at maiores et, illum modi consectetur tempore eum porro odit consequatur itaque possimus.
+									</li>
+									<li>
+										<span>requests</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, praesentium? Suscipit totam deserunt magni assumenda ab facilis at maiores et, illum modi consectetur tempore eum porro odit consequatur itaque possimus.
+									</li>
+									<li>
+										<span>retry_times</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, praesentium? Suscipit totam deserunt magni assumenda ab facilis at maiores et, illum modi consectetur tempore eum porro odit consequatur itaque possimus.
+									</li>
+									<li>
+										<span>sync_interval</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, praesentium? Suscipit totam deserunt magni assumenda ab facilis at maiores et, illum modi consectetur tempore eum porro odit consequatur itaque possimus.
+									</li>
+									<li>
+										<span>ckpt_interval</span> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, praesentium? Suscipit totam deserunt magni assumenda ab facilis at maiores et, illum modi consectetur tempore eum porro odit consequatur itaque possimus.
+									</li>
+								</ol>
+							</div>
+						</section>
+						<section class="special" id="runPBFT">
+							<h3>Run PBFT!</h3>
+							<form action="" id="pbftInputs">
+								<ul class="icons labeled gridded">
+									<li>
+										<div class="formIp">
+											<span class="icon fas fa-comment-alt"></span>
+											<span class="label">Message</span>
+											<input type="text" name="msg" id="msg" value="Hello World!" required>
+										</div>
+									</li>
+									<li>
+										<div class="formIp">
+											<span class="icon solid fas fa-database"></span>
+											<span class="label">Replicas</span>
+											<input type="text" inputmode="numeric" name="nodes" id="nodes" value="4" required>
+										</div>
+									</li>
+									<li>
+										<div class="formIp">
+											<span class="icon solid fas fa-paper-plane"></span>
+											<span class="label">Requests</span>
+											<input type="text" inputmode="numeric" name="requests" id="requests" value="10" required>
+										</div>
+									</li>
+									<li>
+										<div class="formIp">
+											<span class="icon solid fas fa-redo"></span>
+											<span class="label">Retries</span>
+											<input type="text" inputmode="numeric" name="retries" id="retries" value="2" required>
+										</div>
+									</li>
+									<li>
+										<div class="formIp">
+											<span class="icon solid fas fa-sync"></span>
+											<span class="label">Sync Interval</span>
+											<input type="text" inputmode="numeric" name="sync_interval" id="sync_interval" value="5" required>
+										</div>
+									</li>
+									<li>
+										<div class="formIp">
+											<span class="icon solid fas fa-list-alt"></span>
+											<span class="label" id="ckpt_interval_label">Checkpoint Interval</span>
+											<input type="text" inputmode="numeric" name="ckpt_interval" id="ckpt_interval" value="1" required>
+										</div>
+									</li>
+								</ul>
+
+								<div id="runDiv">
+									<input type="submit" value="Run PBFT!" id="submitBtn">
+								</div>
+							</form>
+						</section>
+					</div>
+				</section>
+
+			<!-- Three -->
+				<section id="three" class="wrapper style2 special">
+					<header class="major" id="about">
+						<h2>Meet the Team!</h2>
+						<p>Gravida at leo elementum elit fusce accumsan dui libero, quis vehicula<br />
+						lectus ultricies eu. In convallis amet leo sapien iaculis efficitur.</p>
+					</header>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fas fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fas fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><i href="#" class="icon brands fas fa-instagram"><span class="label">Instagram</span></i></li>
+					</ul>
+					<p class="copyright">&copy; Untitled. Credits: <a href="http://html5up.net">HTML5 UP</a></p>
+				</footer>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='js/assets/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/jquery.scrolly.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/util.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/main.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/smoothScroll.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+
+	</body>
+</html>

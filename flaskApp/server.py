@@ -2,6 +2,9 @@ from flaskApp import app
 from flask import jsonify, request, render_template
 from .pbft import requestHandler as rh
 
+messageData = {}
+
+
 @app.route('/node', methods=['GET', 'POST'])
 def node():
 
@@ -32,5 +35,12 @@ def msg():
 
 
 @app.route("/")
-def index():
-    return render_template('index.html')
+def introPage():
+    messageData = rh.parseJSONfile()
+    return render_template('intro.html')
+
+
+@app.route("/pbft.html")
+def pbftPage():
+    messageData = rh.parseJSONfile()
+    return render_template('pbft.html')
