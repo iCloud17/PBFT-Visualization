@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 This is an extension to Practical-Byzantine-Fault-Tolerance-PBFT implementation by CyHsiung
 
 ## ChangeLog
@@ -96,4 +95,3 @@ Python: 3.5.3
 aiohttp: 3.4.4
 yaml: 3.12
 ```
->>>>>>> 03fc4c028e966133c339ad7e372339ade101b927
