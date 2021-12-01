@@ -12,10 +12,12 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="stylesheet" href="added/css/intro.css" />
-		<link rel="stylesheet" href="added/css/pbft.css" />
+		<script src="{{ url_for('static', filename='css/assets/fontawesome/js/fontawesome.js')}}"></script>
+		<script src="{{ url_for('static', filename='css/assets/fontawesome/js/solid.js')}}"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/assets/main.css') }}">
+		<noscript></noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/assets/noscript.css') }}"></noscript>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/intro.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/pbft.css') }}">
 	</head>
 	<body class="is-preload">
 		<div class="hnavbar" id="navbar">
@@ -110,15 +112,16 @@
 	
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="added/js/smoothScroll.js"></script>
-			<script src="added/js/nav.js"></script>
-			<script src="added/js/pbft.js"></script>
+			<script src="{{ url_for('static', filename='js/assets/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/jquery.scrolly.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/util.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/assets/main.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/smoothScroll.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/pbft.js') }}"></script>
+
 
 	</body>
 </html>

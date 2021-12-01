@@ -39,12 +39,12 @@
     border-radius: 100% !important;
     background-color: white !important;
     width: fit-content !important;
-    padding: 7% !important;
+    padding: 5% !important;
     top: 100% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     z-index: 2 !important;
-    font-size: 1.1em !important;
+    font-size: 0.73em !important;
 }
 
 #pbftTable .corner {
