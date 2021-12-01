@@ -11,6 +11,13 @@ export FLASK_ENV=development
 flask run
  ```
 
+If you are on Windows:
+```
+set FLASK_APP=run.py
+set FLASK_ENV=development
+flask run
+ ```
+
 The alternative way to run the app is to run:
 
 `python3 run.py`
