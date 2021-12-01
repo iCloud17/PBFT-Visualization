@@ -7,6 +7,7 @@ from random import random, randint
 from collections import Counter
 import json
 import sys
+from datetime import datetime
 
 import asyncio
 import aiohttp
@@ -643,7 +644,7 @@ class PBFTHandler:
                             with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
                                 message_data = json_data["proposal"][next(iter(json_data["proposal"]))]['data']
 
-                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,time.time(),str('prepare'))
+                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3],str('prepare'))
                                 feedsjson.writelines("\n"+message_dict)
                                 
                                 
@@ -651,12 +652,12 @@ class PBFTHandler:
                         if self._index != i and command == "prepare":
                             with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
                                 message_data = json_data["proposal"][next(iter(json_data["proposal"]))]['data']  
-                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,time.time(),str('preprepare'))
+                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3],str('preprepare'))
                                 feedsjson.writelines("\n"+message_dict)
                         if self._index != i and command == "reply":
                             with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
                                 message_data = json_data["proposal"][next(iter(json_data["proposal"]))]['data']  
-                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,time.time(),str('commit'))
+                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3],str('commit'))
                                 feedsjson.writelines("\n"+message_dict)
                         # elif self._index != i:
                         #     with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
@@ -755,7 +756,7 @@ class PBFTHandler:
                 with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
                     message_data = json_data['data']
 
-                    request_dict = '{"data": "%s", "source": "client", "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,time.time(),'request')
+                    request_dict = '{"data": "%s", "source": "client", "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,datetime.today().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3],'request')
                         
                     feedsjson.writelines("\n"+request_dict)
 

@@ -1,9 +1,9 @@
 #!/bin/sh
 
 ./run_node.sh
-sleep 5
+sleep 2
 ./run_client.sh
-sleep 10
+sleep 2
 ./dynamic_trial.sh
 
 sleep 5

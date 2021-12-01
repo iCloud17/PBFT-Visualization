@@ -156,7 +156,7 @@ def runPBFTAlgo(json):
         for i in range(int(json['request'])):
             post_request = '{ "id":"(0, %s)", "client_url":"http://localhost:20030/reply","timestamp":%s,"data":"%s"}' % (i, time.time(), json['msg'][i])
             request_string = 'curl -vLX POST --data \'' + post_request + '\' http://localhost:30001/request\n'
-            post_data.write("\n"+request_string+"\nsleep 5\n")
+            post_data.write("\n"+request_string+"\nsleep 2\n")
     
     port_numbers = 30000
     yaml_path = os.getcwd()+'/pbft.yaml'
