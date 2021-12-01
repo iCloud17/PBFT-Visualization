@@ -1,6 +1,8 @@
+#!/bin/sh
+
 ./run_node.sh
-sleep 15 
+sleep 5
 ./run_client.sh
 
-sleep 30
-pkill -9 Python
+sleep 500
+pkill -9 python

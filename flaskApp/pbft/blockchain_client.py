@@ -322,12 +322,10 @@ def setup(args = None):
     try:
         addr = conf['clients'][args.client_id]
     except Exception as e:
-        import pdb; pdb.set_trace()
+        print("Exception Occured", e)
     
 
-
     log.info("begin")
-
 
     client = Client(conf, args, log)
 

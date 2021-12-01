@@ -11,6 +11,9 @@ import sys
 import asyncio
 import aiohttp
 from aiohttp import web
+message_dict = ""
+request_dict = ""
+
 
 import hashlib
 
@@ -463,8 +466,6 @@ class Blockchain:
     def last_block_hash(self):
         tail = self.chain[-1]
 
-        # print(tail.transactions)
-
         return tail.hash
 
     def update_commit_counter(self):
@@ -481,14 +482,10 @@ class Blockchain:
 
         if previous_hash != block.previous_hash:
             raise Exception('block.previous_hash not equal to last_block_hash')
-            # print('block.previous_hash not equal to last_block_hash')
             return
-        # else:
-        #     print(str(previous_hash)+' == '+str(block.previous_hash))
-
-
+       
         block.hash = block.compute_hash()
-        # print( 'New Hash : '+str(block.hash)+'\n\n')
+        
         self.length += 1
         self.chain.append(block)
 
@@ -600,6 +597,7 @@ class PBFTHandler:
                     timeout = aiohttp.ClientTimeout(self._network_timeout)
                     self._session = aiohttp.ClientSession(timeout=timeout)
                 self._log.debug("make request to %d, %s", i, command)
+
                 try:
                     resp = await self._session.post(self.make_url(node, command), json=json_data)
                     resp_list.append((i, resp))
@@ -626,12 +624,39 @@ class PBFTHandler:
             command: action
             json_data: Data in json format.
         '''
+        
         if not self._session:
             timeout = aiohttp.ClientTimeout(self._network_timeout)
             self._session = aiohttp.ClientSession(timeout=timeout)
         for i, node in enumerate(nodes):
             if random() > self._loss_rate:
                 self._log.debug("make request to %d, %s", i, command)
+                try:
+                    if command == "commit":
+                        if self._index != self._leader and self._index != i:
+                            with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
+                                message_data = json_data["proposal"][next(iter(json_data["proposal"]))]['data']
+
+                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,time.time(),str('prepare'))
+                                feedsjson.writelines("\n"+message_dict)
+                                
+                                
+                    else:
+                        if self._index != i and command == "prepare":
+                            with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
+                                message_data = json_data["proposal"][next(iter(json_data["proposal"]))]['data']  
+                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,time.time(),str('preprepare'))
+                                feedsjson.writelines("\n"+message_dict)
+                        if self._index != i and command == "reply":
+                            with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
+                                message_data = json_data["proposal"][next(iter(json_data["proposal"]))]['data']  
+                                message_dict = '{"data": "%s", "source": %d, "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,i,time.time(),str('commit'))
+                                feedsjson.writelines("\n"+message_dict)
+                        
+                               
+                                
+                except Exception as e:
+                    print(e)
                 try:
                     _ = await self._session.post(self.make_url(node, command), json=json_data)
                 except Exception as e:
@@ -690,14 +715,16 @@ class PBFTHandler:
         }
         
         self._log.info("---> %d: -------- BROADCASTING PREPREPARED MESSAGE TO ALL NODES -------", self._index)
+        
+        
         await self._post(self._nodes, PBFTHandler.PREPARE, preprepare_msg)
-        #self._log.info("---> %d: ################## PREPREPARED END ###################", self._index)
-
+        
     async def get_request(self, request):
         '''
         Handle the request from client if leader, otherwise 
         redirect to the leader.
         '''
+
         self._log.info("---> %d: handling request from client", self._index)
 
         if not self._is_leader:
@@ -708,14 +735,18 @@ class PBFTHandler:
                 raise web.HTTPServiceUnavailable()
         else:
 
-            # print(request.headers)
-            # print(request.__dict__)
-
             json_data = await request.json()
 
+            try:
+                with open('my_file.txt', mode='a+', encoding='utf-8') as feedsjson:
+                    message_data = json_data['data']
 
-            # print("\t\t--->node"+str(self._index)+": on request :")
-            # print(json_data)
+                    request_dict = '{"data": "%s", "source": "client", "destination": %d, "time_stamp": "%s", "type": "%s"}'%(message_data,self._index,time.time(),'request')
+                        
+                    feedsjson.writelines("\n"+request_dict)
+
+            except Exception as e:
+                    print(e)
 
             await self.preprepare(json_data)
             return web.Response()
@@ -750,9 +781,6 @@ class PBFTHandler:
         self._log.info("---> %d: on prepare", self._index)
         for slot in json_data['proposal']:
 
-            # if not self._legal_slot(slot):
-            #     continue
-
             if slot not in self._status_by_slot:
                 self._status_by_slot[slot] = Status(self._f)
 
@@ -765,6 +793,8 @@ class PBFTHandler:
                 'type': Status.PREPARE
             }
             self._log.info("---> %d: -------- BROADCASTING PREPARED MESSAGE TO ALL NODES -------", self._index)
+            
+
             await self._post(self._nodes, PBFTHandler.COMMIT, prepare_msg)
         return web.Response()
 
@@ -788,9 +818,6 @@ class PBFTHandler:
         self._log.info("---> %d: receive prepare msg from %d", 
             self._index, json_data['index'])
 
-        # print("\t--->node "+str(self._index)+": receive prepare msg from node "+str(json_data['index']))
-        # print(json_data)
-
         if json_data['view'] < self._follow_view.get_view():
             # when receive message with view < follow_view, do nothing
             return web.Response()
@@ -799,9 +826,7 @@ class PBFTHandler:
         self._log.info("---> %d: on commit", self._index)
         
         for slot in json_data['proposal']:
-            # if not self._legal_slot(slot):
-            #     continue
-
+       
             if slot not in self._status_by_slot:
                 self._status_by_slot[slot] = Status(self._f)
             status = self._status_by_slot[slot]
@@ -822,6 +847,7 @@ class PBFTHandler:
                     },
                     'type': Status.COMMIT
                 }
+
                 await self._post(self._nodes, PBFTHandler.REPLY, commit_msg)
         return web.Response()
 
@@ -853,11 +879,10 @@ class PBFTHandler:
 
         self._log.info("---> %d: receive commit msg from %d", 
             self._index, json_data['index'])
+        
+        
 
         for slot in json_data['proposal']:
-
-            # if not self._legal_slot(slot):
-            #     continue
 
             if slot not in self._status_by_slot:
                 self._status_by_slot[slot] = Status(self._f)
@@ -899,6 +924,7 @@ class PBFTHandler:
 
 
                     # Commit!
+
                     await self._commit_action()
                     try:
                         await self._session.post(
@@ -910,6 +936,7 @@ class PBFTHandler:
                     else:
                         self._log.info("%d reply to %s successfully!!", 
                             self._index, json_data['proposal'][slot]['client_url'])
+        
                 
         return web.Response()
 
@@ -942,10 +969,6 @@ class PBFTHandler:
                 self.committed_to_blockchain = False
             
         try:
-            # if self._index == 3:
-                # print('Node 3 is leader : ', str(self._is_leader))
-            # print('Node '+str(self._index)+' is leader : ', str(self._is_leader))
-            
             if not self.committed_to_blockchain and len(commit_decisions) == self._checkpoint_interval:
                 self.committed_to_blockchain = True
                 transactions =  commit_decisions 
@@ -960,49 +983,21 @@ class PBFTHandler:
                 new_block=  Block(self._blockchain.length, commit_decisions, timestamp , self._blockchain.last_block_hash())
                 self._blockchain.add_block(new_block)
 
-                # if self._index == 3:
-                #     print(new_block.get_json())
-
         except Exception as e:
             traceback.print_exc()
             print(e)
 
-        
-        # print(len(self._status_by_slot))
-        # print(self._ckpt.next_slot, self._last_commit_slot + 1)
-        # print(len(commit_decisions))
-        # # print()
-        # print()
-        # print('commit_decisions')
-        # print(commit_decisions)
         return commit_decisions
 
     async def _commit_action(self):
         '''
         Dump the current commit decisions to disk.
         '''
-        # with open("~$node_{}_blockchain.dump".format(self._index), 'w') as f:
-
-        # dump_data = self._ckpt.checkpoint + self.get_commit_decisions()            
-            # json.dump(dump_data, f)
-        # try:
         with open("$node_{}.blockchain".format(self._index), 'a') as f:
-            # f.write(str(dump_data)+'\n\n------------\n\n')
-            # print('node :' + str(self._index) +' > '+str(self._blockchain.commit_counter)+' : '+str(self._blockchain.length))
             for i in range(self._blockchain.commit_counter, self._blockchain.length):
                 f.write(str(self._blockchain.chain[i].get_json())+'\n------------\n')
                 self._blockchain.update_commit_counter()
-        # except Exception as e:
-        #     traceback.print_exc()
-        #     print('for i = ' +str(i))
-        #     print(e)
-
-        # pad = ''
-        # for k in range(self._index): 
-        #     pad += '\t'
-        # print(pad+'node :' + str(self._index) +' : '+str(self._blockchain.length))
-
-        
+       
 
     async def receive_ckpt_vote(self, request):
         '''
@@ -1010,15 +1005,6 @@ class PBFTHandler:
         '''
         self._log.info("---> %d: receive checkpoint vote.", self._index)
         json_data = await request.json()
-
-        # print ()
-        # print ()
-        # print ('json_data')
-        # print ()
-        # print ()
-        # # print ('ckpt')
-        # # print (ckpt)
-        # print ()
 
         await self._ckpt.receive_vote(json_data)
         return web.Response()
