@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 nodes:
     - host: localhost
       port: 30000
@@ -28,3 +29,35 @@ sync_interval: 5
 
 misc:
     network_timeout: 105
+=======
+nodes:
+    - host: localhost
+      port: 30000
+    - host: localhost
+      port: 30001
+    - host: localhost
+      port: 30002
+    - host: localhost
+      port: 30003
+    - host: localhost
+      port: 30004
+    - host: localhost
+      port: 30005
+
+clients:
+    - host: localhost
+      port: 20001
+    - host: localhost
+      port: 20002
+
+loss%: 0
+
+ckpt_interval: 12
+
+retry_times_before_view_change: 2
+
+sync_interval: 5
+
+misc:
+    network_timeout: 105
+>>>>>>> 03fc4c028e966133c339ad7e372339ade101b927
