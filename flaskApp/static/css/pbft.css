@@ -101,7 +101,7 @@
 
 /* ----------------------------------ARROW CSS---------------------------------- */
 
-#pbftTable .arrow {
+.arrow {
     position: absolute;
     top: 0;
     left: 0;
@@ -109,13 +109,13 @@
     overflow: visible;
 }
 
-#pbftTable .line, .head {
+.line, .head {
     margin: 0;
     padding: 0;
     position: relative;
 }
 
-#pbftTable .line {
+.line {
     height: 3px;
     display: inline-block;
     vertical-align: middle;
@@ -123,7 +123,7 @@
     border: none;
 }
 
-#pbftTable .head {
+.head {
     width: 0;
     height: 0;
     background-color: transparent;
@@ -136,7 +136,7 @@
     cursor: pointer;
 }
 
-#pbftTable .msgBall {
+.msgBall {
     margin: 0;
     padding: 0;
     width: 10px;

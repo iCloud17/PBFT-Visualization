@@ -62,8 +62,8 @@
             console.log(data.phase, getPhaseIndex(data.Phase));
             msgData.style.color = colors[getPhaseIndex(data.Phase)];
             msgData.innerText = JSON.stringify(data, null, 2);
-            logger.appendChild(document.createElement('br'));
-            logger.appendChild(msgData);
+            logger.prepend(document.createElement('br'));
+            logger.prepend(msgData);
         }
 
         initCorners();
@@ -150,12 +150,11 @@
         }
 
         function parseMsgData(data) {
-            console.log('msgDat', data);
             let msgData = document.createElement('pre');
             msgData.style.color = colors[getPhaseIndex(data.type)];
             msgData.innerText = JSON.stringify(data, null, 2);
-            logger.appendChild(document.createElement('br'));
-            logger.appendChild(msgData);
+            logger.prepend(document.createElement('br'));
+            logger.prepend(msgData);
         }
 
         //#endregion
