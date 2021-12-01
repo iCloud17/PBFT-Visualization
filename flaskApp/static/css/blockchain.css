@@ -62,6 +62,14 @@ footer {
     padding-top: 30%;
 }
 
+.hovering {
+    background-color: #fff4df;
+}
+
+.outside {
+    background-color: #f5deb3;
+}
+
 /* #blockchain:hover {
     gap: 15%;
 } */
