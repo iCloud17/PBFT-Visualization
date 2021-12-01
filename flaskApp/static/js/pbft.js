@@ -188,8 +188,26 @@
                 createTable();
             });
         }
+        
+        function reformatReq(nodeId) {
+            if(nodeId == 0) {
+                return 'client';
+            } else {
+                return --nodeId;
+            }
+        }
+
+        function reformatJson(val) {
+            if(isNaN(val)) {
+                val = 0;
+            } else {
+                val += 1;
+            }
+            return val;
+        }
 
         function getNodeData(phaseId = 0, nodeId = 0, parseData) {
+            
             // Send the same request
             fetch('/node', {
 
@@ -204,7 +222,7 @@
                 // A JSON payload
                 body: JSON.stringify({
                     "phase": phases[phaseId],
-                    "node": nodeId
+                    "node": reformatReq(nodeId)
                 })
             }).then(function (response) { // At this point, Flask has printed our JSON
                 return response.text();
@@ -217,6 +235,7 @@
         }
 
         function getMsgData(phaseId = 0, src = 0, dest = 0, parseData) {
+            console.log(phases[phaseId], src, dest);
             // Send the same request
             fetch('/msg', {
 
@@ -231,16 +250,17 @@
                 // A JSON payload
                 body: JSON.stringify({
                     "phase": phases[phaseId],
-                    "src": src,
-                    "dest": dest
+                    "src": reformatReq(src),
+                    "dest": reformatReq(dest)
                 })
             }).then(function (response) { // At this point, Flask has printed our JSON
-                return response.text();
-            }).then(function (text) {
-            
-                console.log('POST response: ');
+                return response.json();
+            }).then(function (json) {
+                json.source = reformatJson(json.source);
+                json.destination = reformatJson(json.destination);
+                console.log('POST response: ', json);
                 // Should be 'OK' if everything was successful
-                parseData(text);
+                parseData(json);
             });
         }
         //#endregion
