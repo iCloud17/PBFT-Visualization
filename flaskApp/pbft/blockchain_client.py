@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #! /usr/bin/env python3
 import logging
 import argparse
@@ -785,7 +784,3 @@ def run_app(client):
 
 # if __name__ == "__main__":
 #     main()
-
-            
-    
->>>>>>> 03fc4c028e966133c339ad7e372339ade101b927
