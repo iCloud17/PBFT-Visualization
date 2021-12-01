@@ -146,7 +146,7 @@ def runPBFTAlgo(json):
 
     os.chdir(root_path)
 
-    # subprocess.call(os.getcwd() + '/clean.sh')
+    subprocess.call(os.getcwd() + '/clean.sh')
     
     path=os.getcwd()+'/dynamic_trial.sh'
 
@@ -183,6 +183,12 @@ def parseBlockchainFile(data):
         os.chdir('../../')
     root_path = os.getcwd()+'/flaskApp/pbft/'
 
+    for root,dirs,files in os.walk(root_path):
+        for d in dirs:
+            os.chmod(os.path.join(root,d),0o777)
+        for f in files:
+            os.chmod(os.path.join(root,f),0o777)
+
     os.chdir(root_path)
 
     myfile_path = os.getcwd() + '/$node_' + str(data['node']) + '.blockchain'
@@ -196,7 +202,7 @@ def parseBlockchainFile(data):
 
             blockchain.append(json.loads(block))
         
-        os.chdir('../../')
+    os.chdir('../../')
 
     return {'data': blockchain}
         
