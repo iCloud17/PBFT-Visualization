@@ -44,6 +44,7 @@ def pbftPage():
 
 @app.route("/startPBFT", methods=['GET', 'POST'])
 def startPBFT():
+    global pbftData
     # POST request
     if request.method == 'POST':
         pbftData = request.get_json()
@@ -58,5 +59,11 @@ def startPBFT():
 
 @app.route("/getLogs", methods=['GET'])
 def getLogs():
+    global pbftData
     if request.method == 'GET':
-        return 'OK'
+        return rh.parseJSONfile(pbftData)
+
+@app.route("/getBlock", methods=['POST'])
+def getBlock():
+    if request.method == 'POST':
+        return rh.parseBlockchainFile(request.get_json())

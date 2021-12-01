@@ -5,6 +5,7 @@ import json
 import ast
 
 def getNodeData(json_data):
+    print(">>>>>>>>>>>>>>>>.",json_data)
     output_list = []
     phases_list = {'request':0, 'preprepare':1, 'prepare':2, 'commit':3,'reply':4}
     total_count_phase = 0
@@ -25,12 +26,13 @@ def getNodeData(json_data):
             if each_line.startswith("{"):
                 output_list.append(json.loads(each_line))
     for each_dict in output_list:
-        if each_dict['destination']==json_data['destination'] and each_dict['type']==json_data['type']:
+        if each_dict['destination']==json_data['node'] and each_dict['type']==json_data['phase']:
                 total_count_phase+=1
                 source_message_list.append(each_dict['source'])
 
-
+    os.chdir('../../')
     data = {
+        "Node": json_data['node'],
         "Sources List":source_message_list,
         "Number of messages in the phase":total_count_phase,
         "Phase": json_data['phase']
@@ -77,8 +79,26 @@ def getMsgData(json_data):
 
 
     
-def parseJSONfile():
-    return
+def parseJSONfile(pbftData):
+
+    output_list = []
+    root_path = os.getcwd()+'/flaskApp/pbft/'
+    for root,dirs,files in os.walk(root_path):
+        for d in dirs:
+            os.chmod(os.path.join(root,d),0o777)
+        for f in files:
+            os.chmod(os.path.join(root,f),0o777)
+
+    os.chdir(root_path)
+    myfile_path = os.getcwd() + '/my_file.txt'
+    with open(myfile_path, "r") as file:
+        os.chmod(myfile_path,0o777)
+        for each_line in file.readlines():
+            if each_line.startswith("{"):
+                output_list.append(json.loads(each_line))
+    os.chdir('../../')
+    return {"data": output_list, "replicas": pbftData['replicas']}
+
 
 
 def runPBFTAlgo(json):
@@ -125,8 +145,26 @@ def runPBFTAlgo(json):
     subprocess.call(os.getcwd() + '/run.sh')
     os.chdir('../../')
 
-def runSendRequest(json):
-    subprocess.call(os.path.abspath(os.getcwd())+'/flaskApp/pbft/dynamic_trial.sh')
+def parseBlockchainFile(data):
+    output_list = []
+    #data['node'] = 0
+    text_string=""
+    
+    root_path = os.getcwd()+'/flaskApp/pbft/'
+    os.chdir(root_path)
+    myfile_path = os.getcwd() + '/$node_' + str(data['node']) + '.blockchain'
+    with open(myfile_path, "r") as file:
+        os.chmod(myfile_path,0o777)
+        text_string = file.read()
+        # print(text_string)
+        text_string = text_string.split('------------')
+        blockchain = []
+        for block in text_string[:-1]:
+            # print(block)
+            blockchain.append(json.loads(block))
+        os.chdir('../../')
+        return {'data': blockchain}
+        
         
 
 if __name__== "__main__":
@@ -134,4 +172,5 @@ if __name__== "__main__":
     'destination':1,
     'type':"prepare"}
     runPBFTAlgo(json_data)
-    #getMsgData(json_data)
+    getMsgData(json_data)
+    parseBlockchainFile(json_data)

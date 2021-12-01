@@ -21,7 +21,7 @@
             dv.id = `corner${x}${y}`;
             element.appendChild(dv);
             dv.addEventListener('click', function() {
-                getNodeData(y, x, parseNodeData);
+                getNodeData(--y, x, parseNodeData);
             });
         }
 
@@ -139,7 +139,9 @@
             }
             for(let i = 0; i < logData.data.length; i++) {
                 let src = logData.data[i].source;
-                let dest = logData.data[i].dest;
+                let dest = logData.data[i].destination;
+                src = reformatJson(src);
+                dest = reformatJson(dest);
                 let phaseT = logData.data[i].type;
                 let phaseId = 0;
                 for(let j = 0; j < phases.length; j++) {
@@ -264,6 +266,32 @@
             });
         }
         //#endregion
+
+        for(let i = 0; i < 4; i++) {
+            fetch('/getBlock', {
+
+                // Specify the method
+                method: 'POST',
+            
+                // JSON
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            
+                // A JSON payload
+                body: JSON.stringify({
+                    "node": i
+                })
+            }).then(function (response) { // At this point, Flask has printed our JSON
+                return response.json();
+            }).then(function (json) {
+                // json.source = reformatJson(json.source);
+                // json.destination = reformatJson(json.destination);
+                console.log('POST response: ', json);
+                // Should be 'OK' if everything was successful
+                parseData(json);
+            });
+        }
 
     });
 
