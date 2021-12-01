@@ -21,10 +21,16 @@
     transition: 1s !important;
 }
 
-#blockchain:hover > .block, #blockchain:hover > #bcLabel {
+#blockchain:hover {
+    background-color: #fff4df;
+}
+
+#blockchain:hover > .block {
     margin: 10%;
-    background-color: #fcb633;
-    border: 1px solid black;
+    background-color: wheat;
+    color: #1f1f1f;
+    border: 5px solid black;
+    font-family: 'Fira Code', monospace;
 }
 
 #blockchain:hover > .block {
@@ -36,6 +42,7 @@
 }
 
 .block {
+    white-space: pre;
     width: 70%;
     height: 70%;
     overflow-y: auto;
@@ -43,6 +50,11 @@
     transition: 2s;
     margin: 1%;
     opacity: 0;
+}
+
+.block > span {
+    padding: 0 1%;
+    color: white;
 }
 
 footer {

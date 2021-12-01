@@ -1,4 +1,5 @@
 (function() {
+    
     window.addEventListener('load', function() {
         fetch('/getPBFTdata').then(function (response) { // At this point, Flask has printed our JSON
             return response.json();
@@ -12,6 +13,8 @@
         const vNav = document.querySelector('#verNavBar ul');
         const blockchain = document.getElementById('blockchain');
         let curReplica = 0;
+        const colors = ['#2364AA', '#EA7317', '#358600', '#3DA5D9', '#FEC601'];
+
         function loadPage(data) {
             for(let i = 1; i <= data.replicas; i++) {
                 let replica = document.createElement('li');
@@ -65,9 +68,17 @@
                 console.log('for data ', data.data[i]);
                 let div = document.createElement('div');
                 div.className = 'block';
-                let pre = document.createElement('pre');
-                pre.innerText = JSON.stringify(data.data[i], null, 2);
-                div.appendChild(pre);
+                data.data[i].previous_hash = `<span style='background-color: ${colors[i%colors.length]};'>${data.data[i].previous_hash}</span>`;
+                data.data[i].hash = `<span style='background-color: ${colors[(i+1)%colors.length]};'>${data.data[i].hash}</span>`;
+                div.innerHTML = JSON.stringify( {
+                    "index": data.data[i].index, 
+                    "hash": data.data[i].hash,
+                    "previous_hash": data.data[i].previous_hash,
+                    "timestamp": data.data[i].timestamp,
+                    "transactions": data.data[i].transactions
+                }, null, 2);
+                // div.appendChild(pre);
+                
                 if(idcr) {
                     div.style.gridColumn = `${pos} / ${++pos}`;
                 } else {
