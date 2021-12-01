@@ -12,8 +12,11 @@
 
         const vNav = document.querySelector('#verNavBar ul');
         const blockchain = document.getElementById('blockchain');
+        let blocks;
         let curReplica = 0;
         const colors = ['#2364AA', '#EA7317', '#358600', '#3DA5D9', '#FEC601'];
+        const phases = ['request', 'preprepare', 'prepare', 'commit', 'reply'];
+        let drawnArrows = false;
 
         function loadPage(data) {
             for(let i = 1; i <= data.replicas; i++) {
@@ -84,12 +87,15 @@
                 } else {
                     div.style.gridColumn = `${pos - 1} / ${pos--}`;
                 }
+                row = (Math.floor(i / 3)) + 1;
+                div.style.gridRow = `${row} / ${row + 1}`;
                 if(pos == 1)
                     idcr = true;
                 else if(pos == 4)
                     idcr = false;
                 blockchain.appendChild(div);
             }
+            blocks = blockchain.querySelectorAll('.block');
         }
 
         //#region Arrow Functions--------------------------
@@ -116,47 +122,72 @@
             return obj;
         }
 
-        function getLeftMid(parent, blocks, id) {
-            let element = blocks[id];
+        function getRightMid(parent, element) {
             let obj = {
-                x: element.getBoundingClientRect().left - ttable.getBoundingClientRect().left + (element.offsetWidth/2),
-                y: element.getBoundingClientRect().top - ttable.getBoundingClientRect().top + (element.offsetHeight/2)
+                x: element.getBoundingClientRect().left + element.offsetWidth - parent.getBoundingClientRect().left,
+                y: element.getBoundingClientRect().top - parent.getBoundingClientRect().top + (element.offsetHeight/2)
             };
+            return obj;
         }
 
-        function drawArrow(b1, b2) {
+        function getLeftMid(parent, element) {
+            let obj = {
+                x: element.getBoundingClientRect().left - parent.getBoundingClientRect().left,
+                y: element.getBoundingClientRect().top - parent.getBoundingClientRect().top + (element.offsetHeight/2)
+            };
+            return obj;
+        }
+
+        function getTopMid(parent, element) {
+            let obj = {
+                x: element.getBoundingClientRect().left + (element.offsetWidth / 2) - parent.getBoundingClientRect().left,
+                y: element.getBoundingClientRect().top - parent.getBoundingClientRect().top
+            };
+            return obj;
+        }
+
+        function getBottomMid(parent, element) {
+            let obj = {
+                x: element.getBoundingClientRect().left + (element.offsetWidth / 2) - parent.getBoundingClientRect().left,
+                y: element.getBoundingClientRect().top - parent.getBoundingClientRect().top + element.offsetHeight
+            };
+            return obj;
+        }
+
+        function drawArrow(b1, b2, phase) {
+            console.log('drawArrow!');
             let rowb1 = Math.floor(b1 / 3);
             let rowb2 = Math.floor(b2 / 3);
-            let blocks = blockchain.querySelectorAll('.block');
             let from, to;
             if(rowb1 == rowb2) {
                 //side to side
                 if(rowb1 % 2 == 0) {
                     //left to right
-                    
+                    from = getRightMid(blockchain, blocks[b1]);
+                    to = getLeftMid(blockchain, blocks[b2]);
                 } else {
                     //right to left
+                    from = getLeftMid(blockchain, blocks[b1]);
+                    to = getRightMid(blockchain, blocks[b2]);
                 }
             } else {
                 // top bottom arrow
+                from = getBottomMid(blockchain, blocks[b1]);
+                to = getTopMid(blockchain, blocks[b2]);
             }
             
-            //Get from point and to point positions
-            let from = getObj(`#pbftTable #corner${x1}${y1}`);
-            let to = getObj(`#pbftTable #corner${x2}${y2}`);
-            // console.log(from, to);
             //Create Arrow
             let arrow = document.createElement('div');
             arrow.className = 'arrow';
             //Add class according to whichever phase it is to change colors in css
-            arrow.innerHTML = `<div class="${phases[y1]} line"><div class="msgBall"></div></div><div class="head ${phases[y1]}"></div>`;
+            arrow.innerHTML = `<div class="${phase} line"><div class="msgBall"></div></div><div class="head ${phase}"></div>`;
             let line = arrow.querySelector('.line');
             let head = arrow.querySelector('.head');
             let dist = getArrowWidth(from, to);
             line.style.width = `${dist}px`;
             arrow.style.left = `${from.x}px`;
             //Add to table first so that we can compute offsetHeights correctly
-            ttable.appendChild(arrow);
+            blockchain.appendChild(arrow);
             let ball = arrow.querySelector('.msgBall');
             ball.style.animationDelay = `${Math.random() * 2}s`;
             arrow.style.top = `${from.y - head.offsetHeight}px`;
@@ -167,9 +198,6 @@
 
             arrow.style.width = `${line.offsetWidth + head.offsetWidth}px`;
             line.style.width = `${dist - head.offsetWidth}px`;
-            
-            line.addEventListener('click', () => {getMsgData(y1, x1, x2, parseMsgData);});
-            head.addEventListener('click', () => {getMsgData(y1, x1, x2, parseMsgData);});
         }
 
         //#endregion
