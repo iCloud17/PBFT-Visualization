@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import blockchain_client as client
 
 def main():
@@ -22,5 +21,4 @@ def main():
 
 
 if __name__ == "__main__":
->>>>>>> 03fc4c028e966133c339ad7e372339ade101b927
     main()
