@@ -1,4 +1,4 @@
-<<<<<<< HEAD:README.md
+README.md
 This project is built using https://github.com/soumyaxyz/Python-PBFT-Blockchain as a basis! We have added upon the work by providing a visualization of the data flow process and a simple UI to actually understand whats going on, and see the value changes and decisions made by nodes given certain messages.
 
 To run, first make sure the requirements are set up: 
@@ -36,4 +36,3 @@ The alternative way to run the app is to run:
 `python3 run.py`
 
 Hope you have a clearer understanding of PBFT!
->>>>>>> 03fc4c028e966133c339ad7e372339ade101b927:readme.md
