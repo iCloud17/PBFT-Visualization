@@ -4,8 +4,10 @@ import os
 import json
 import ast
 
+suffix = 'pbft'
+suffix2 = 'pbft/'
 def getNodeData(json_data, pbftData):
-    print(">>>>>>>>>>>>>>>>.",json_data)
+
     if json_data['phase'] == 'reply':
         srcList = list(range(1, int(pbftData['replicas']) + 1))
         srcList.extend(list(range(1, int(pbftData['replicas']) + 1)))
@@ -20,7 +22,10 @@ def getNodeData(json_data, pbftData):
     phases_list = {'request':0, 'preprepare':1, 'prepare':2, 'commit':3,'reply':4}
     total_count_phase = 0
     source_message_list = []
-    phase_count = 0 
+    phase_count = 0
+
+    if os.getcwd().endswith(suffix)== True or os.getcwd().endswith(suffix2)==True:
+        os.chdir('../../')
     root_path = os.getcwd()+'/flaskApp/pbft/'
     for root,dirs,files in os.walk(root_path):
         for d in dirs:
@@ -63,6 +68,8 @@ def getMsgData(json_data):
     
     output_list = []
 
+    if os.getcwd().endswith(suffix)== True or os.getcwd().endswith(suffix2)==True:
+        os.chdir('../../')
     root_path = os.getcwd()+'/flaskApp/pbft/'
     for root,dirs,files in os.walk(root_path):
         for d in dirs:
@@ -100,6 +107,9 @@ def getMsgData(json_data):
 def parseJSONfile(pbftData):
 
     output_list = []
+
+    if os.getcwd().endswith(suffix)== True or os.getcwd().endswith(suffix2)==True:
+        os.chdir('../../')
     root_path = os.getcwd()+'/flaskApp/pbft/'
     for root,dirs,files in os.walk(root_path):
         for d in dirs:
@@ -124,6 +134,8 @@ def runPBFTAlgo(json):
     #Create trial.sh
     
 
+    if os.getcwd().endswith(suffix)== True or os.getcwd().endswith(suffix2)==True:
+        os.chdir('../../')
     root_path = os.getcwd()+'/flaskApp/pbft/'
 
     for root,dirs,files in os.walk(root_path):
@@ -134,7 +146,7 @@ def runPBFTAlgo(json):
 
     os.chdir(root_path)
 
-    # subprocess.call(os.getcwd() + '/clean.sh')
+    subprocess.call(os.getcwd() + '/clean.sh')
     
     path=os.getcwd()+'/dynamic_trial.sh'
 
@@ -167,8 +179,15 @@ def parseBlockchainFile(data):
     output_list = []
     #data['node'] = 0
     text_string=""
-
+    if os.getcwd().endswith(suffix)== True or os.getcwd().endswith(suffix2)==True:
+        os.chdir('../../')
     root_path = os.getcwd()+'/flaskApp/pbft/'
+
+    for root,dirs,files in os.walk(root_path):
+        for d in dirs:
+            os.chmod(os.path.join(root,d),0o777)
+        for f in files:
+            os.chmod(os.path.join(root,f),0o777)
 
     os.chdir(root_path)
 
@@ -176,14 +195,14 @@ def parseBlockchainFile(data):
     with open(myfile_path, "r") as file:
         os.chmod(myfile_path,0o777)
         text_string = file.read()
-        # print(text_string)
+
         text_string = text_string.split('------------')
         blockchain = []
         for block in text_string[:-1]:
-            # print(block)
+
             blockchain.append(json.loads(block))
         
-        os.chdir('../../')
+    os.chdir('../../')
 
     return {'data': blockchain}
         
