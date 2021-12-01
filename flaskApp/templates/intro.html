@@ -146,30 +146,9 @@
 						</div>
 					</section>
 					<section class="mySection" id="pbftInstr">
-						<h3>PBFT Instructions</h3>
-						<!-- <div class="image"><img src="{{ url_for('static', filename='img/pbft.png') }}" alt="PBFT"></div> -->
-						<div class="content ourInputs" style="color:black">
-							<p>
-								INPUTS:
-							</p>
-							<ol>
-								<li>
-									<span>message</span> - Message that is being sent from UI to the backend. Consider this as the request from client to replica.
-								</li>
-								<li>
-									<span>nodes</span> - Number of replicas in the system
-								</li>
-								<li>
-									<span>requests</span> - Number of messages client wants to send
-								</li>
-								<li>
-									<span>retry_times</span> - On failure of message sending, the number of times algorithm retries.
-								</li>
-								<li>
-									<span>ckpt_interval</span> - Number of meesages in a single block of blockchain
-								</li>
-							</ol>
-						</div>
+						<h3>ROADMAP</h3>
+						<div class="image"><img src="{{ url_for('static', filename='img/roadmap.jpg') }}" alt="PBFT" style="width: 900px;"></div>
+						
 					</section>
 					<section class="special" id="runPBFT">
 						<h3>Run PBFT!</h3>
@@ -228,7 +207,30 @@
 								<input type="submit" value="Run PBFT!" id="submitBtn">
 							</div>
 						</form>
+						
 					</section>
+					<div class="content ourInputs" style="color:black">
+						<p>
+							INPUTS:
+						</p>
+						<ol>
+							<li>
+								<span>message</span> - Message that is being sent from UI to the backend. Consider this as the request from client to replica.
+							</li>
+							<li>
+								<span>nodes</span> - Number of replicas in the system
+							</li>
+							<li>
+								<span>requests</span> - Number of messages client wants to send
+							</li>
+							<li>
+								<span>retry_times</span> - On failure of message sending, the number of times algorithm retries.
+							</li>
+							<li>
+								<span>ckpt_interval</span> - Number of meesages in a single block of blockchain
+							</li>
+						</ol>
+					</div>
 				</div>
 			</section>
 
