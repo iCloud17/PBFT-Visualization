@@ -175,10 +175,11 @@
     grid-template-rows: auto;
     gap: 5%;
     position: relative;
+    color: #414141;
 }
 
 .formIp > span {
-    color: #d3d3d3;
+    color: #414141;
 }
 
 .formIp > input {

@@ -1,5 +1,5 @@
 (function() {
-    
+
     window.addEventListener('load', function() {
         fetch('/getPBFTdata').then(function (response) { // At this point, Flask has printed our JSON
             return response.json();
@@ -116,8 +116,30 @@
             return obj;
         }
 
+        function getLeftMid(parent, blocks, id) {
+            let element = blocks[id];
+            let obj = {
+                x: element.getBoundingClientRect().left - ttable.getBoundingClientRect().left + (element.offsetWidth/2),
+                y: element.getBoundingClientRect().top - ttable.getBoundingClientRect().top + (element.offsetHeight/2)
+            };
+        }
+
         function drawArrow(b1, b2) {
+            let rowb1 = Math.floor(b1 / 3);
+            let rowb2 = Math.floor(b2 / 3);
             let blocks = blockchain.querySelectorAll('.block');
+            let from, to;
+            if(rowb1 == rowb2) {
+                //side to side
+                if(rowb1 % 2 == 0) {
+                    //left to right
+                    
+                } else {
+                    //right to left
+                }
+            } else {
+                // top bottom arrow
+            }
             
             //Get from point and to point positions
             let from = getObj(`#pbftTable #corner${x1}${y1}`);

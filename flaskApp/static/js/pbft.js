@@ -51,11 +51,13 @@
         function parseNodeData(data) {
             console.log('NodeDat', data);
             if(!isNaN(data.Node)) {
-                data.Node++;
+                data.Node = `Replica ${++data.Node}`;
             }
             data['Sources List'].forEach((src, idx) => {
                 if(!isNaN(src)) {
-                    data['Sources List'][idx]++;
+                    data['Sources List'][idx] = `Replica ${++data['Sources List'][idx]}`;
+                } else {
+                    data['Sources List'][idx] = 'Client';
                 }
             });
             let msgData = document.createElement('pre');
@@ -149,9 +151,20 @@
             head.addEventListener('click', () => {getMsgData(y1, x1, x2, parseMsgData);});
         }
 
+        function readableMsg(data) {
+            if(data == 0) {
+                data = 'Client';
+            } else {
+                data = `Replica ${data}`;
+            }
+            return data;
+        }
+
         function parseMsgData(data) {
             let msgData = document.createElement('pre');
             msgData.style.color = colors[getPhaseIndex(data.type)];
+            data.destination = readableMsg(data.destination);
+            data.source = readableMsg(data.source);
             msgData.innerText = JSON.stringify(data, null, 2);
             logger.prepend(document.createElement('br'));
             logger.prepend(msgData);
