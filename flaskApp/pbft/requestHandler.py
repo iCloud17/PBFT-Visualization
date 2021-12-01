@@ -7,7 +7,17 @@ import ast
 def getNodeData(json_data):
     output_list = []
     count = 0 
-    with open("my_file.txt", "r") as file:
+    root_path = os.getcwd()+'/flaskApp/pbft/'
+    for root,dirs,files in os.walk(root_path):
+        for d in dirs:
+            os.chmod(os.path.join(root,d),0o777)
+        for f in files:
+            os.chmod(os.path.join(root,f),0o777)
+
+    os.chdir(root_path)
+    myfile_path = os.getcwd() + '/my_file.txt'
+    with open(myfile_path, "r") as file:
+        os.chmod(myfile_path,0o777)
         for each_line in file.readlines():
             if each_line.startswith("{"):
                 output_list.append(json.loads(each_line))
@@ -17,56 +27,54 @@ def getNodeData(json_data):
                 count=+1
             print(count)
             return
-    
 
 
 def getMsgData(json_data):
-    # json['source']='0'
-    # json['destination']='1'
-    # json['phase']='prepare'
+    
     output_list = []
-    with open("my_file.txt", "r") as file:
+
+    root_path = os.getcwd()+'/flaskApp/pbft/'
+    for root,dirs,files in os.walk(root_path):
+        for d in dirs:
+            os.chmod(os.path.join(root,d),0o777)
+        for f in files:
+            os.chmod(os.path.join(root,f),0o777)
+
+    os.chdir(root_path)
+    myfile_path = os.getcwd() + '/my_file.txt'
+    with open(myfile_path, "r") as file:
+        os.chmod(myfile_path,0o777)
         for each_line in file.readlines():
             if each_line.startswith("{"):
                 output_list.append(json.loads(each_line))
+    
+    os.chdir('../../')
+
+
     for each_dict in output_list:
-        if each_dict['source'] == json_data['source'] and each_dict['destination'] == json_data['destination'] and each_dict['type'] == json_data['type']:
-            print(each_dict)
-            return
+        if json_data['phase'] == 'reply':
+
+            data = {
+                "data": each_dict['data'], 
+                "destination": 'client', 
+                "source":  json_data['src'], 
+                "type": "reply"
+                }
+            return data
+
+        elif each_dict['source'] == json_data['src'] and each_dict['destination'] == json_data['dest'] and each_dict['type'] == json_data['phase']:
+            return each_dict
+
 
     
 def parseJSONfile():
     return
 
-        
-
-#     print("msg json object", json)
-#     messageData = {
-#         "messageNumber": {
-#             "phaseNumber": {
-#                 "destinationOrTo": {
-#                     "sourceOrFrom": {
-#                         "message": "msg",
-#                         "time": "time"
-#                     }
-#                 }
-#             }
-#         }
-#     }
-#     messageData = parseJSONfile(jsonFileName)
-#     return {
-#         "messageNumber": number,
-#         "phaseNumber": number,
-#         "destination": number,
-#         "source": number,
-#         "message": messageData["messageNumber"]["phaseNumber"]["destination"]["source"].message,
-#         "time": messageData["messageNumber"]["phaseNumber"]["destination"]["source"].time,
-#     }
 
 def runPBFTAlgo(json):
 
     #Create trial.sh
-    print("OS CWD =======", os.getcwd())
+    
 
     root_path = os.getcwd()+'/flaskApp/pbft/'
 

@@ -118,8 +118,11 @@
             arrow.style.width = `${line.offsetWidth + head.offsetWidth}px`;
             line.style.width = `${dist - head.offsetWidth}px`;
             
-            line.addEventListener('click', () => {getMsgData(y2, x1, x2, parseMsgData);});
-            head.addEventListener('click', () => {getMsgData(y2, x1, x2, parseMsgData);});
+            line.addEventListener('click', () => {
+                console.log("CLICKED LINE", y1, x1, x2);
+                getMsgData(y1, x1, x2, parseMsgData);
+            });
+            head.addEventListener('click', () => {getMsgData(y1, x1, x2, parseMsgData);});
         }
 
         function parseMsgData(data) {
@@ -156,7 +159,25 @@
         //#endregion
 
         //#region Requests---------------------------------
+        function reformatReq(nodeId) {
+            if(nodeId == 0) {
+                return 'client';
+            } else {
+                return --nodeId;
+            }
+        }
+
+        function reformatJson(val) {
+            if(isNaN(val)) {
+                val = 0;
+            } else {
+                val += 1;
+            }
+            return val;
+        }
+
         function getNodeData(phaseId = 0, nodeId = 0, parseData) {
+            
             // Send the same request
             fetch('/node', {
 
@@ -170,8 +191,8 @@
             
                 // A JSON payload
                 body: JSON.stringify({
-                    "phase": phaseId,
-                    "node": nodeId
+                    "phase": phases[phaseId],
+                    "node": reformatReq(nodeId)
                 })
             }).then(function (response) { // At this point, Flask has printed our JSON
                 return response.text();
@@ -184,6 +205,7 @@
         }
 
         function getMsgData(phaseId = 0, src = 0, dest = 0, parseData) {
+            console.log(phases[phaseId], src, dest);
             // Send the same request
             fetch('/msg', {
 
@@ -197,17 +219,18 @@
             
                 // A JSON payload
                 body: JSON.stringify({
-                    "phase": phaseId,
-                    "src": src,
-                    "dest": dest
+                    "phase": phases[phaseId],
+                    "src": reformatReq(src),
+                    "dest": reformatReq(dest)
                 })
             }).then(function (response) { // At this point, Flask has printed our JSON
-                return response.text();
-            }).then(function (text) {
-            
-                console.log('POST response: ');
+                return response.json();
+            }).then(function (json) {
+                json.source = reformatJson(json.source);
+                json.destination = reformatJson(json.destination);
+                console.log('POST response: ', json);
                 // Should be 'OK' if everything was successful
-                parseData(text);
+                parseData(json);
             });
         }
         //#endregion
