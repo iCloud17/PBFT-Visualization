@@ -1,112 +1,112 @@
 
-{"data": "Hello World!", "source": "client", "destination": 0, "time_stamp": "1638354575.0700767", "type": "request"}
-{"data": "Hello World!", "source": 0, "destination": 1, "time_stamp": "1638354575.1491256", "type": "preprepare"}
-{"data": "Hello World!", "source": 1, "destination": 0, "time_stamp": "1638354575.151026", "type": "prepare"}
-{"data": "Hello World!", "source": 1, "destination": 2, "time_stamp": "1638354575.1601622", "type": "prepare"}
-{"data": "Hello World!", "source": 1, "destination": 3, "time_stamp": "1638354575.166242", "type": "prepare"}
-{"data": "Hello World!", "source": 0, "destination": 2, "time_stamp": "1638354575.1851664", "type": "preprepare"}
-{"data": "Hello World!", "source": 2, "destination": 0, "time_stamp": "1638354575.187619", "type": "prepare"}
-{"data": "Hello World!", "source": 0, "destination": 1, "time_stamp": "1638354575.2111864", "type": "commit"}
-{"data": "Hello World!", "source": 0, "destination": 2, "time_stamp": "1638354575.233011", "type": "commit"}
-{"data": "Hello World!", "source": 0, "destination": 3, "time_stamp": "1638354575.2368906", "type": "commit"}
-{"data": "Hello World!", "source": 2, "destination": 1, "time_stamp": "1638354575.2465956", "type": "prepare"}
-{"data": "Hello World!", "source": 1, "destination": 0, "time_stamp": "1638354575.2497091", "type": "commit"}
-{"data": "Hello World!", "source": 1, "destination": 2, "time_stamp": "1638354575.2549186", "type": "commit"}
-{"data": "Hello World!", "source": 1, "destination": 3, "time_stamp": "1638354575.2785525", "type": "commit"}
-{"data": "Hello World!", "source": 2, "destination": 0, "time_stamp": "1638354575.3003821", "type": "commit"}
-{"data": "Hello World!", "source": 2, "destination": 1, "time_stamp": "1638354575.3703835", "type": "commit"}
-{"data": "Hello World!", "source": 2, "destination": 3, "time_stamp": "1638354575.5357153", "type": "commit"}
-{"data": "Hello World!", "source": 2, "destination": 3, "time_stamp": "1638354575.6218767", "type": "prepare"}
-{"data": "Hello World!", "source": 3, "destination": 0, "time_stamp": "1638354575.6268694", "type": "commit"}
-{"data": "Hello World!", "source": 3, "destination": 1, "time_stamp": "1638354575.6355503", "type": "commit"}
-{"data": "Hello World!", "source": 3, "destination": 2, "time_stamp": "1638354575.6417406", "type": "commit"}
-{"data": "Hello World!", "source": 0, "destination": 3, "time_stamp": "1638354575.6617677", "type": "preprepare"}
-{"data": "Hello World!", "source": 3, "destination": 0, "time_stamp": "1638354575.663504", "type": "prepare"}
-{"data": "Hello World!", "source": 0, "destination": 1, "time_stamp": "1638354575.6676233", "type": "commit"}
-{"data": "Hello World!", "source": 0, "destination": 2, "time_stamp": "1638354575.6698427", "type": "commit"}
-{"data": "Hello World!", "source": 0, "destination": 3, "time_stamp": "1638354575.685132", "type": "commit"}
-{"data": "Hello World!", "source": 3, "destination": 1, "time_stamp": "1638354575.7148986", "type": "prepare"}
-{"data": "Hello World!", "source": 1, "destination": 0, "time_stamp": "1638354575.7176847", "type": "commit"}
-{"data": "Hello World!", "source": 1, "destination": 2, "time_stamp": "1638354575.7223399", "type": "commit"}
-{"data": "Hello World!", "source": 1, "destination": 3, "time_stamp": "1638354575.7261114", "type": "commit"}
-{"data": "Hello World!", "source": 3, "destination": 2, "time_stamp": "1638354575.7320857", "type": "prepare"}
-{"data": "Hello World!", "source": 2, "destination": 0, "time_stamp": "1638354575.7339427", "type": "commit"}
-{"data": "Hello World!", "source": 2, "destination": 1, "time_stamp": "1638354575.7372437", "type": "commit"}
-{"data": "Hello World!", "source": 2, "destination": 3, "time_stamp": "1638354575.7560089", "type": "commit"}
-{"data": "Hello World!", "source": 3, "destination": 0, "time_stamp": "1638354575.7717984", "type": "commit"}
-{"data": "Hello World!", "source": 3, "destination": 1, "time_stamp": "1638354575.7812474", "type": "commit"}
-{"data": "Hello World!", "source": 3, "destination": 2, "time_stamp": "1638354575.788575", "type": "commit"}
-{"data": "sample message 1", "source": "client", "destination": 0, "time_stamp": "1638354580.951856", "type": "request"}
-{"data": "sample message 1", "source": 0, "destination": 1, "time_stamp": "1638354581.0036917", "type": "preprepare"}
-{"data": "sample message 1", "source": 1, "destination": 0, "time_stamp": "1638354581.0058134", "type": "prepare"}
-{"data": "sample message 1", "source": 1, "destination": 2, "time_stamp": "1638354581.0391493", "type": "prepare"}
-{"data": "sample message 1", "source": 1, "destination": 3, "time_stamp": "1638354581.042141", "type": "prepare"}
-{"data": "sample message 1", "source": 0, "destination": 2, "time_stamp": "1638354581.0469089", "type": "preprepare"}
-{"data": "sample message 1", "source": 2, "destination": 0, "time_stamp": "1638354581.050092", "type": "prepare"}
-{"data": "sample message 1", "source": 0, "destination": 1, "time_stamp": "1638354581.0823538", "type": "commit"}
-{"data": "sample message 1", "source": 0, "destination": 2, "time_stamp": "1638354581.087611", "type": "commit"}
-{"data": "sample message 1", "source": 0, "destination": 3, "time_stamp": "1638354581.0984957", "type": "commit"}
-{"data": "sample message 1", "source": 2, "destination": 1, "time_stamp": "1638354581.110669", "type": "prepare"}
-{"data": "sample message 1", "source": 1, "destination": 0, "time_stamp": "1638354581.1125062", "type": "commit"}
-{"data": "sample message 1", "source": 1, "destination": 2, "time_stamp": "1638354581.1266181", "type": "commit"}
-{"data": "sample message 1", "source": 1, "destination": 3, "time_stamp": "1638354581.1333299", "type": "commit"}
-{"data": "sample message 1", "source": 2, "destination": 0, "time_stamp": "1638354581.1510375", "type": "commit"}
-{"data": "sample message 1", "source": 2, "destination": 1, "time_stamp": "1638354581.1940544", "type": "commit"}
-{"data": "sample message 1", "source": 2, "destination": 3, "time_stamp": "1638354581.317178", "type": "commit"}
-{"data": "sample message 1", "source": 2, "destination": 3, "time_stamp": "1638354581.363115", "type": "prepare"}
-{"data": "sample message 1", "source": 3, "destination": 0, "time_stamp": "1638354581.3651257", "type": "commit"}
-{"data": "sample message 1", "source": 3, "destination": 1, "time_stamp": "1638354581.3680847", "type": "commit"}
-{"data": "sample message 1", "source": 3, "destination": 2, "time_stamp": "1638354581.3828428", "type": "commit"}
-{"data": "sample message 1", "source": 0, "destination": 3, "time_stamp": "1638354581.399956", "type": "preprepare"}
-{"data": "sample message 1", "source": 3, "destination": 0, "time_stamp": "1638354581.4018588", "type": "prepare"}
-{"data": "sample message 1", "source": 0, "destination": 1, "time_stamp": "1638354581.415457", "type": "commit"}
-{"data": "sample message 1", "source": 0, "destination": 2, "time_stamp": "1638354581.4343007", "type": "commit"}
-{"data": "sample message 1", "source": 0, "destination": 3, "time_stamp": "1638354581.4453084", "type": "commit"}
-{"data": "sample message 1", "source": 3, "destination": 1, "time_stamp": "1638354581.449922", "type": "prepare"}
-{"data": "sample message 1", "source": 1, "destination": 0, "time_stamp": "1638354581.4574897", "type": "commit"}
-{"data": "sample message 1", "source": 1, "destination": 2, "time_stamp": "1638354581.4698908", "type": "commit"}
-{"data": "sample message 1", "source": 1, "destination": 3, "time_stamp": "1638354581.4813392", "type": "commit"}
-{"data": "sample message 1", "source": 3, "destination": 2, "time_stamp": "1638354581.4886653", "type": "prepare"}
-{"data": "sample message 1", "source": 2, "destination": 0, "time_stamp": "1638354581.4913552", "type": "commit"}
-{"data": "sample message 1", "source": 2, "destination": 1, "time_stamp": "1638354581.500229", "type": "commit"}
-{"data": "sample message 1", "source": 2, "destination": 3, "time_stamp": "1638354581.5121613", "type": "commit"}
-{"data": "sample message 1", "source": 3, "destination": 0, "time_stamp": "1638354581.5213487", "type": "commit"}
-{"data": "sample message 1", "source": 3, "destination": 1, "time_stamp": "1638354581.530241", "type": "commit"}
-{"data": "sample message 1", "source": 3, "destination": 2, "time_stamp": "1638354581.5361204", "type": "commit"}
-{"data": "sample message 2", "source": "client", "destination": 0, "time_stamp": "1638354586.5968728", "type": "request"}
-{"data": "sample message 2", "source": 0, "destination": 1, "time_stamp": "1638354586.620654", "type": "preprepare"}
-{"data": "sample message 2", "source": 1, "destination": 0, "time_stamp": "1638354586.632006", "type": "prepare"}
-{"data": "sample message 2", "source": 1, "destination": 2, "time_stamp": "1638354586.6539955", "type": "prepare"}
-{"data": "sample message 2", "source": 1, "destination": 3, "time_stamp": "1638354586.6596937", "type": "prepare"}
-{"data": "sample message 2", "source": 0, "destination": 2, "time_stamp": "1638354586.6746793", "type": "preprepare"}
-{"data": "sample message 2", "source": 2, "destination": 0, "time_stamp": "1638354586.6770024", "type": "prepare"}
-{"data": "sample message 2", "source": 0, "destination": 1, "time_stamp": "1638354586.6806006", "type": "commit"}
-{"data": "sample message 2", "source": 0, "destination": 2, "time_stamp": "1638354586.687832", "type": "commit"}
-{"data": "sample message 2", "source": 0, "destination": 3, "time_stamp": "1638354586.6942823", "type": "commit"}
-{"data": "sample message 2", "source": 2, "destination": 1, "time_stamp": "1638354586.703113", "type": "prepare"}
-{"data": "sample message 2", "source": 1, "destination": 0, "time_stamp": "1638354586.706167", "type": "commit"}
-{"data": "sample message 2", "source": 1, "destination": 2, "time_stamp": "1638354586.7230802", "type": "commit"}
-{"data": "sample message 2", "source": 1, "destination": 3, "time_stamp": "1638354586.7294154", "type": "commit"}
-{"data": "sample message 2", "source": 2, "destination": 0, "time_stamp": "1638354586.7403834", "type": "commit"}
-{"data": "sample message 2", "source": 2, "destination": 1, "time_stamp": "1638354586.818032", "type": "commit"}
-{"data": "sample message 2", "source": 2, "destination": 3, "time_stamp": "1638354586.9663925", "type": "commit"}
-{"data": "sample message 2", "source": 2, "destination": 3, "time_stamp": "1638354587.0162857", "type": "prepare"}
-{"data": "sample message 2", "source": 3, "destination": 0, "time_stamp": "1638354587.036303", "type": "commit"}
-{"data": "sample message 2", "source": 3, "destination": 1, "time_stamp": "1638354587.0518086", "type": "commit"}
-{"data": "sample message 2", "source": 3, "destination": 2, "time_stamp": "1638354587.0656111", "type": "commit"}
-{"data": "sample message 2", "source": 0, "destination": 3, "time_stamp": "1638354587.104858", "type": "preprepare"}
-{"data": "sample message 2", "source": 3, "destination": 0, "time_stamp": "1638354587.1146293", "type": "prepare"}
-{"data": "sample message 2", "source": 0, "destination": 1, "time_stamp": "1638354587.1239803", "type": "commit"}
-{"data": "sample message 2", "source": 0, "destination": 2, "time_stamp": "1638354587.1381624", "type": "commit"}
-{"data": "sample message 2", "source": 0, "destination": 3, "time_stamp": "1638354587.1526296", "type": "commit"}
-{"data": "sample message 2", "source": 3, "destination": 1, "time_stamp": "1638354587.1651998", "type": "prepare"}
-{"data": "sample message 2", "source": 1, "destination": 0, "time_stamp": "1638354587.1682494", "type": "commit"}
-{"data": "sample message 2", "source": 1, "destination": 2, "time_stamp": "1638354587.1942463", "type": "commit"}
-{"data": "sample message 2", "source": 1, "destination": 3, "time_stamp": "1638354587.223143", "type": "commit"}
-{"data": "sample message 2", "source": 3, "destination": 2, "time_stamp": "1638354587.2659733", "type": "prepare"}
-{"data": "sample message 2", "source": 2, "destination": 0, "time_stamp": "1638354587.2687328", "type": "commit"}
-{"data": "sample message 2", "source": 2, "destination": 1, "time_stamp": "1638354587.2730522", "type": "commit"}
-{"data": "sample message 2", "source": 2, "destination": 3, "time_stamp": "1638354587.3121552", "type": "commit"}
-{"data": "sample message 2", "source": 3, "destination": 0, "time_stamp": "1638354587.3347564", "type": "commit"}
-{"data": "sample message 2", "source": 3, "destination": 1, "time_stamp": "1638354587.338924", "type": "commit"}
-{"data": "sample message 2", "source": 3, "destination": 2, "time_stamp": "1638354587.3419378", "type": "commit"}
+{"data": "Hello World!", "source": "client", "destination": 0, "time_stamp": "1638355447.9707453", "type": "request"}
+{"data": "Hello World!", "source": 0, "destination": 1, "time_stamp": "1638355448.0982409", "type": "preprepare"}
+{"data": "Hello World!", "source": 1, "destination": 0, "time_stamp": "1638355448.1010659", "type": "prepare"}
+{"data": "Hello World!", "source": 1, "destination": 2, "time_stamp": "1638355448.1550944", "type": "prepare"}
+{"data": "Hello World!", "source": 1, "destination": 3, "time_stamp": "1638355448.1937435", "type": "prepare"}
+{"data": "Hello World!", "source": 0, "destination": 2, "time_stamp": "1638355448.249774", "type": "preprepare"}
+{"data": "Hello World!", "source": 2, "destination": 0, "time_stamp": "1638355448.253177", "type": "prepare"}
+{"data": "Hello World!", "source": 0, "destination": 1, "time_stamp": "1638355448.2994518", "type": "commit"}
+{"data": "Hello World!", "source": 0, "destination": 2, "time_stamp": "1638355448.3216555", "type": "commit"}
+{"data": "Hello World!", "source": 0, "destination": 3, "time_stamp": "1638355448.3443167", "type": "commit"}
+{"data": "Hello World!", "source": 2, "destination": 1, "time_stamp": "1638355448.3646061", "type": "prepare"}
+{"data": "Hello World!", "source": 1, "destination": 0, "time_stamp": "1638355448.3678746", "type": "commit"}
+{"data": "Hello World!", "source": 1, "destination": 2, "time_stamp": "1638355448.3871343", "type": "commit"}
+{"data": "Hello World!", "source": 1, "destination": 3, "time_stamp": "1638355448.3971014", "type": "commit"}
+{"data": "Hello World!", "source": 2, "destination": 0, "time_stamp": "1638355448.4308147", "type": "commit"}
+{"data": "Hello World!", "source": 2, "destination": 1, "time_stamp": "1638355448.5863607", "type": "commit"}
+{"data": "Hello World!", "source": 2, "destination": 3, "time_stamp": "1638355448.9938653", "type": "commit"}
+{"data": "Hello World!", "source": 2, "destination": 3, "time_stamp": "1638355449.072955", "type": "prepare"}
+{"data": "Hello World!", "source": 3, "destination": 0, "time_stamp": "1638355449.0963063", "type": "commit"}
+{"data": "Hello World!", "source": 3, "destination": 1, "time_stamp": "1638355449.1303709", "type": "commit"}
+{"data": "Hello World!", "source": 3, "destination": 2, "time_stamp": "1638355449.1357927", "type": "commit"}
+{"data": "Hello World!", "source": 0, "destination": 3, "time_stamp": "1638355449.1949866", "type": "preprepare"}
+{"data": "Hello World!", "source": 3, "destination": 0, "time_stamp": "1638355449.2006571", "type": "prepare"}
+{"data": "Hello World!", "source": 0, "destination": 1, "time_stamp": "1638355449.2343361", "type": "commit"}
+{"data": "Hello World!", "source": 0, "destination": 2, "time_stamp": "1638355449.2395904", "type": "commit"}
+{"data": "Hello World!", "source": 0, "destination": 3, "time_stamp": "1638355449.2487738", "type": "commit"}
+{"data": "Hello World!", "source": 3, "destination": 1, "time_stamp": "1638355449.2593813", "type": "prepare"}
+{"data": "Hello World!", "source": 1, "destination": 0, "time_stamp": "1638355449.261423", "type": "commit"}
+{"data": "Hello World!", "source": 1, "destination": 2, "time_stamp": "1638355449.2759497", "type": "commit"}
+{"data": "Hello World!", "source": 1, "destination": 3, "time_stamp": "1638355449.279399", "type": "commit"}
+{"data": "Hello World!", "source": 3, "destination": 2, "time_stamp": "1638355449.2947237", "type": "prepare"}
+{"data": "Hello World!", "source": 2, "destination": 0, "time_stamp": "1638355449.2974443", "type": "commit"}
+{"data": "Hello World!", "source": 2, "destination": 1, "time_stamp": "1638355449.3002887", "type": "commit"}
+{"data": "Hello World!", "source": 2, "destination": 3, "time_stamp": "1638355449.3046472", "type": "commit"}
+{"data": "Hello World!", "source": 3, "destination": 0, "time_stamp": "1638355449.3209574", "type": "commit"}
+{"data": "Hello World!", "source": 3, "destination": 1, "time_stamp": "1638355449.3338525", "type": "commit"}
+{"data": "Hello World!", "source": 3, "destination": 2, "time_stamp": "1638355449.3442183", "type": "commit"}
+{"data": "sample message 1", "source": "client", "destination": 0, "time_stamp": "1638355454.452802", "type": "request"}
+{"data": "sample message 1", "source": 0, "destination": 1, "time_stamp": "1638355454.5004778", "type": "preprepare"}
+{"data": "sample message 1", "source": 1, "destination": 0, "time_stamp": "1638355454.504044", "type": "prepare"}
+{"data": "sample message 1", "source": 1, "destination": 2, "time_stamp": "1638355454.5236208", "type": "prepare"}
+{"data": "sample message 1", "source": 1, "destination": 3, "time_stamp": "1638355454.5296018", "type": "prepare"}
+{"data": "sample message 1", "source": 0, "destination": 2, "time_stamp": "1638355454.5366795", "type": "preprepare"}
+{"data": "sample message 1", "source": 2, "destination": 0, "time_stamp": "1638355454.566791", "type": "prepare"}
+{"data": "sample message 1", "source": 0, "destination": 1, "time_stamp": "1638355454.5717514", "type": "commit"}
+{"data": "sample message 1", "source": 0, "destination": 2, "time_stamp": "1638355454.5827684", "type": "commit"}
+{"data": "sample message 1", "source": 0, "destination": 3, "time_stamp": "1638355454.587807", "type": "commit"}
+{"data": "sample message 1", "source": 2, "destination": 1, "time_stamp": "1638355454.6033673", "type": "prepare"}
+{"data": "sample message 1", "source": 1, "destination": 0, "time_stamp": "1638355454.6054184", "type": "commit"}
+{"data": "sample message 1", "source": 1, "destination": 2, "time_stamp": "1638355454.6178577", "type": "commit"}
+{"data": "sample message 1", "source": 1, "destination": 3, "time_stamp": "1638355454.6326685", "type": "commit"}
+{"data": "sample message 1", "source": 2, "destination": 0, "time_stamp": "1638355454.6471972", "type": "commit"}
+{"data": "sample message 1", "source": 2, "destination": 1, "time_stamp": "1638355454.732206", "type": "commit"}
+{"data": "sample message 1", "source": 2, "destination": 3, "time_stamp": "1638355454.8602464", "type": "commit"}
+{"data": "sample message 1", "source": 2, "destination": 3, "time_stamp": "1638355454.902418", "type": "prepare"}
+{"data": "sample message 1", "source": 3, "destination": 0, "time_stamp": "1638355454.9194303", "type": "commit"}
+{"data": "sample message 1", "source": 3, "destination": 1, "time_stamp": "1638355454.9261942", "type": "commit"}
+{"data": "sample message 1", "source": 3, "destination": 2, "time_stamp": "1638355454.9341986", "type": "commit"}
+{"data": "sample message 1", "source": 0, "destination": 3, "time_stamp": "1638355454.964278", "type": "preprepare"}
+{"data": "sample message 1", "source": 3, "destination": 0, "time_stamp": "1638355454.9662867", "type": "prepare"}
+{"data": "sample message 1", "source": 0, "destination": 1, "time_stamp": "1638355454.9706433", "type": "commit"}
+{"data": "sample message 1", "source": 0, "destination": 2, "time_stamp": "1638355454.973752", "type": "commit"}
+{"data": "sample message 1", "source": 0, "destination": 3, "time_stamp": "1638355454.9894056", "type": "commit"}
+{"data": "sample message 1", "source": 3, "destination": 1, "time_stamp": "1638355455.0119665", "type": "prepare"}
+{"data": "sample message 1", "source": 1, "destination": 0, "time_stamp": "1638355455.0137827", "type": "commit"}
+{"data": "sample message 1", "source": 1, "destination": 2, "time_stamp": "1638355455.018687", "type": "commit"}
+{"data": "sample message 1", "source": 1, "destination": 3, "time_stamp": "1638355455.0215075", "type": "commit"}
+{"data": "sample message 1", "source": 3, "destination": 2, "time_stamp": "1638355455.0240033", "type": "prepare"}
+{"data": "sample message 1", "source": 2, "destination": 0, "time_stamp": "1638355455.0257099", "type": "commit"}
+{"data": "sample message 1", "source": 2, "destination": 1, "time_stamp": "1638355455.0339236", "type": "commit"}
+{"data": "sample message 1", "source": 2, "destination": 3, "time_stamp": "1638355455.0379763", "type": "commit"}
+{"data": "sample message 1", "source": 3, "destination": 0, "time_stamp": "1638355455.0507233", "type": "commit"}
+{"data": "sample message 1", "source": 3, "destination": 1, "time_stamp": "1638355455.0703351", "type": "commit"}
+{"data": "sample message 1", "source": 3, "destination": 2, "time_stamp": "1638355455.0737436", "type": "commit"}
+{"data": "sample message 2", "source": "client", "destination": 0, "time_stamp": "1638355460.1664217", "type": "request"}
+{"data": "sample message 2", "source": 0, "destination": 1, "time_stamp": "1638355460.2244081", "type": "preprepare"}
+{"data": "sample message 2", "source": 1, "destination": 0, "time_stamp": "1638355460.237507", "type": "prepare"}
+{"data": "sample message 2", "source": 1, "destination": 2, "time_stamp": "1638355460.2442505", "type": "prepare"}
+{"data": "sample message 2", "source": 1, "destination": 3, "time_stamp": "1638355460.258038", "type": "prepare"}
+{"data": "sample message 2", "source": 0, "destination": 2, "time_stamp": "1638355460.2666965", "type": "preprepare"}
+{"data": "sample message 2", "source": 2, "destination": 0, "time_stamp": "1638355460.2685916", "type": "prepare"}
+{"data": "sample message 2", "source": 0, "destination": 1, "time_stamp": "1638355460.2834613", "type": "commit"}
+{"data": "sample message 2", "source": 0, "destination": 2, "time_stamp": "1638355460.2874804", "type": "commit"}
+{"data": "sample message 2", "source": 0, "destination": 3, "time_stamp": "1638355460.3197248", "type": "commit"}
+{"data": "sample message 2", "source": 2, "destination": 1, "time_stamp": "1638355460.340636", "type": "prepare"}
+{"data": "sample message 2", "source": 1, "destination": 0, "time_stamp": "1638355460.3435316", "type": "commit"}
+{"data": "sample message 2", "source": 1, "destination": 2, "time_stamp": "1638355460.3489609", "type": "commit"}
+{"data": "sample message 2", "source": 1, "destination": 3, "time_stamp": "1638355460.354481", "type": "commit"}
+{"data": "sample message 2", "source": 2, "destination": 0, "time_stamp": "1638355460.3712254", "type": "commit"}
+{"data": "sample message 2", "source": 2, "destination": 1, "time_stamp": "1638355460.433503", "type": "commit"}
+{"data": "sample message 2", "source": 2, "destination": 3, "time_stamp": "1638355460.5500932", "type": "commit"}
+{"data": "sample message 2", "source": 2, "destination": 3, "time_stamp": "1638355460.6489613", "type": "prepare"}
+{"data": "sample message 2", "source": 3, "destination": 0, "time_stamp": "1638355460.6554973", "type": "commit"}
+{"data": "sample message 2", "source": 3, "destination": 1, "time_stamp": "1638355460.666283", "type": "commit"}
+{"data": "sample message 2", "source": 3, "destination": 2, "time_stamp": "1638355460.6900918", "type": "commit"}
+{"data": "sample message 2", "source": 0, "destination": 3, "time_stamp": "1638355460.7050738", "type": "preprepare"}
+{"data": "sample message 2", "source": 3, "destination": 0, "time_stamp": "1638355460.7180252", "type": "prepare"}
+{"data": "sample message 2", "source": 0, "destination": 1, "time_stamp": "1638355460.7280197", "type": "commit"}
+{"data": "sample message 2", "source": 0, "destination": 2, "time_stamp": "1638355460.7347975", "type": "commit"}
+{"data": "sample message 2", "source": 0, "destination": 3, "time_stamp": "1638355460.7396162", "type": "commit"}
+{"data": "sample message 2", "source": 3, "destination": 1, "time_stamp": "1638355460.7619412", "type": "prepare"}
+{"data": "sample message 2", "source": 1, "destination": 0, "time_stamp": "1638355460.7641177", "type": "commit"}
+{"data": "sample message 2", "source": 1, "destination": 2, "time_stamp": "1638355460.7685356", "type": "commit"}
+{"data": "sample message 2", "source": 1, "destination": 3, "time_stamp": "1638355460.7710636", "type": "commit"}
+{"data": "sample message 2", "source": 3, "destination": 2, "time_stamp": "1638355460.7880757", "type": "prepare"}
+{"data": "sample message 2", "source": 2, "destination": 0, "time_stamp": "1638355460.7902322", "type": "commit"}
+{"data": "sample message 2", "source": 2, "destination": 1, "time_stamp": "1638355460.7943487", "type": "commit"}
+{"data": "sample message 2", "source": 2, "destination": 3, "time_stamp": "1638355460.8041146", "type": "commit"}
+{"data": "sample message 2", "source": 3, "destination": 0, "time_stamp": "1638355460.8247695", "type": "commit"}
+{"data": "sample message 2", "source": 3, "destination": 1, "time_stamp": "1638355460.8534636", "type": "commit"}
+{"data": "sample message 2", "source": 3, "destination": 2, "time_stamp": "1638355460.8646421", "type": "commit"}

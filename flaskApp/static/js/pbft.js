@@ -9,8 +9,21 @@
         const btn = document.querySelector('#pbftTable button');
         const ttable = document.querySelector('#pbftTable table');
         const tbody = ttable.querySelector('#pbftTable tbody');
+        const logger = document.querySelector('#consoleOp');
         const phases = ['request', 'preprepare', 'prepare', 'commit', 'reply'];
+        const colors = ['#2364AA', '#EA7317', '#358600', '#3DA5D9', '#FEC601'];
         let rowCount = 1;
+
+        function getPhaseIndex(phase) {
+            let phaseId = 0;
+            for(let j = 0; j < phases.length; j++) {
+                if(phases[j] === phase) {
+                    phaseId = j;
+                    break;
+                }
+            }
+            return phaseId;
+        }
 
         //#region Clickable corners------------------------
         //------Add clickable intersection points between Replica and phase ends------
@@ -21,7 +34,7 @@
             dv.id = `corner${x}${y}`;
             element.appendChild(dv);
             dv.addEventListener('click', function() {
-                getNodeData(--y, x, parseNodeData);
+                getNodeData(y - 1, x, parseNodeData);
             });
         }
 
@@ -37,6 +50,20 @@
 
         function parseNodeData(data) {
             console.log('NodeDat', data);
+            if(!isNaN(data.Node)) {
+                data.Node++;
+            }
+            data['Sources List'].forEach((src, idx) => {
+                if(!isNaN(src)) {
+                    data['Sources List'][idx]++;
+                }
+            });
+            let msgData = document.createElement('pre');
+            console.log(data.phase, getPhaseIndex(data.Phase));
+            msgData.style.color = colors[getPhaseIndex(data.Phase)];
+            msgData.innerText = JSON.stringify(data, null, 2);
+            logger.appendChild(document.createElement('br'));
+            logger.appendChild(msgData);
         }
 
         initCorners();
@@ -94,7 +121,7 @@
             //Get from point and to point positions
             let from = getObj(`#pbftTable #corner${x1}${y1}`);
             let to = getObj(`#pbftTable #corner${x2}${y2}`);
-            console.log(from, to);
+            // console.log(from, to);
             //Create Arrow
             let arrow = document.createElement('div');
             arrow.className = 'arrow';
@@ -124,12 +151,16 @@
 
         function parseMsgData(data) {
             console.log('msgDat', data);
+            let msgData = document.createElement('pre');
+            msgData.style.color = colors[getPhaseIndex(data.type)];
+            msgData.innerText = JSON.stringify(data, null, 2);
+            logger.appendChild(document.createElement('br'));
+            logger.appendChild(msgData);
         }
 
         //#endregion
 
         //#region Create Table-----------------------------
-        let nreplicas = 4;
         let logData;
         getTableLogs();
 
@@ -143,14 +174,12 @@
                 src = reformatJson(src);
                 dest = reformatJson(dest);
                 let phaseT = logData.data[i].type;
-                let phaseId = 0;
-                for(let j = 0; j < phases.length; j++) {
-                    if(phases[j] === phaseT) {
-                        phaseId = j;
-                        break;
-                    }
-                }
+                let phaseId = getPhaseIndex(phaseT);
                 drawArrow(src, phaseId, dest, phaseId + 1);
+            }
+            let replyid = getPhaseIndex('reply');
+            for(let i = 1; i <= rowCount; i++) {
+                drawArrow(i, replyid, 0, replyid + 1);
             }
         }
         // for(let i = 0; i < nreplicas; i++) {
@@ -227,12 +256,12 @@
                     "node": reformatReq(nodeId)
                 })
             }).then(function (response) { // At this point, Flask has printed our JSON
-                return response.text();
-            }).then(function (text) {
+                return response.json();
+            }).then(function (data) {
             
-                console.log('POST response: ');
+                console.log('POST response: ', data);
                 // Should be 'OK' if everything was successful
-                parseData(text);
+                parseData(data);
             });
         }
 
@@ -284,12 +313,12 @@
                 })
             }).then(function (response) { // At this point, Flask has printed our JSON
                 return response.json();
-            }).then(function (json) {
+            }).then(function (val) {
                 // json.source = reformatJson(json.source);
                 // json.destination = reformatJson(json.destination);
-                console.log('POST response: ', json);
+                console.log('POST response: ', val);
                 // Should be 'OK' if everything was successful
-                parseData(json);
+                // parseMsgData(val);
             });
         }
 

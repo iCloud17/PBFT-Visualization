@@ -3,7 +3,7 @@ from flask import jsonify, request, render_template
 from .pbft import requestHandler as rh
 
 messageData = { }
-pbftData = {}
+pbftData = {'msg': ['Hello World!', 'sample message 1', 'sample message 2'], 'replicas': '4', 'request': '3', 'retries': '2', 'sync': '5', 'ckpt': '1'}
 
 
 @app.route('/node', methods=['GET', 'POST'])
@@ -12,7 +12,7 @@ def node():
     # POST request
     if request.method == 'POST':
         print('Incoming..')
-        return rh.getNodeData(request.get_json())
+        return rh.getNodeData(request.get_json(), pbftData)
 
     # GET request
     else:
@@ -41,6 +41,10 @@ def introPage():
 @app.route("/pbft.html")
 def pbftPage():
     return render_template('pbft.html')
+
+@app.route("/blockchain.html")
+def blockchainPage():
+    return render_template('blockchain.html')
 
 @app.route("/startPBFT", methods=['GET', 'POST'])
 def startPBFT():

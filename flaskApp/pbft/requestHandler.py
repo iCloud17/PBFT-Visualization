@@ -4,8 +4,18 @@ import os
 import json
 import ast
 
-def getNodeData(json_data):
+def getNodeData(json_data, pbftData):
     print(">>>>>>>>>>>>>>>>.",json_data)
+    if json_data['phase'] == 'reply':
+        srcList = list(range(1, int(pbftData['replicas']) + 1))
+        srcList.extend(list(range(1, int(pbftData['replicas']) + 1)))
+        return {
+            "Node": 'client',
+            "Number of messages in the phase": int(pbftData['replicas']) * 2,
+            "Phase": "reply",
+            "Sources List": srcList
+        }
+
     output_list = []
     phases_list = {'request':0, 'preprepare':1, 'prepare':2, 'commit':3,'reply':4}
     total_count_phase = 0
@@ -42,6 +52,14 @@ def getNodeData(json_data):
 
 
 def getMsgData(json_data):
+    if json_data['phase'] == 'reply':
+        return {
+            "data": "Hello World!",
+            "destination": 'client',
+            "source": json_data['src'],
+            "time_stamp": time.time(),
+            "type": "reply"
+        }
     
     output_list = []
 
@@ -116,7 +134,7 @@ def runPBFTAlgo(json):
 
     os.chdir(root_path)
 
-    subprocess.call(os.getcwd() + '/clean.sh')
+    # subprocess.call(os.getcwd() + '/clean.sh')
     
     path=os.getcwd()+'/dynamic_trial.sh'
 
