@@ -75,7 +75,25 @@
 							<div class="image"><img src="{{ url_for('static', filename='img/pbft.png') }}" alt="PBFT"></div>
 							<div class="content">
 								<p>
-									Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In convallis amet leo non sapien iaculis efficitur consequat lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos eveniet accusantium impedit repellat. Unde, exercitationem architecto porro voluptate hic officia reprehenderit similique sequi odit. Unde sapiente distinctio ea ipsam eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem magni adipisci accusantium molestiae quo ducimus, laudantium alias consequatur non nisi, porro, et libero. Necessitatibus, natus minima! Commodi quibusdam soluta voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit cumque et natus temporibus. Reiciendis, nam saepe! Magni recusandae tempora sint iste doloribus, consequatur similique? Tenetur dignissimos nam vel alias inventore? Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum dolor suscipit minus eos ex quo iusto doloremque veritatis, repudiandae et facere nemo? Mollitia suscipit molestiae libero, aliquid ullam molestias excepturi.
+									pBFT tries to provide a practical Byzantine state machine replication that can work even 
+									when malicious nodes are operating in the system.
+
+									Nodes in a pBFT enabled distributed system are sequentially ordered with one node being the
+									primary(or the leader node) and others referred to as secondary(or the backup nodes). Note here 
+									that any eligible node in the system can become the primary by transitioning from secondary 
+									to primary(typically, in the case of a primary node failure). The goal is that all honest nodes 
+									help in reaching a consensus regarding the state of the system using the majority rule.
+
+									A practical Byzantine Fault Tolerant system can function on the condition that the maximum 
+									number of malicious nodes must not be greater than or equal to one-third of all the nodes in 
+									the system. As the number of nodes increase, the system becomes more secure.
+
+									pBFT consensus rounds are broken into 4 phases as shown above:
+
+									1. The client sends a request to the primary(leader) node.
+									2. The primary(leader) node broadcasts the request to the all the secondary(backup) nodes.
+									3. The nodes(primary and secondaries) perform the service requested and then send back a reply to the client.
+									4. The request is served successfully when the client receives ‘m+1’ replies from different nodes in the network with the same result, where m is the maximum number of faulty nodes allowed.
 								</p>
 							</div>
 						</section>
