@@ -4,7 +4,6 @@
         fetch('/getPBFTdata').then(function (response) { // At this point, Flask has printed our JSON
             return response.json();
         }).then(function (data) {
-            
             console.log('GET response: ', data);
             // Should be 'OK' if everything was successful
             loadPage(data);
@@ -223,7 +222,9 @@
                 from = getBottomMid(blockchain, blocks[b1]);
                 to = getTopMid(blockchain, blocks[b2]);
             }
-            
+            let temp = from;
+            from = to;
+            to = temp;
             //Create Arrow
             let arrow = document.createElement('div');
             arrow.className = 'arrow';

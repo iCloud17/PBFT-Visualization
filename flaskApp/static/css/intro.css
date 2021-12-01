@@ -275,7 +275,7 @@
 
 #teamMembers > .personInfo > figure > * {
     flex: 1;
-}
+}   
 
 #teamMembers > .personInfo > figure > img {
     margin: 0 auto 10% auto;
