@@ -149,9 +149,11 @@ def parseBlockchainFile(data):
     output_list = []
     #data['node'] = 0
     text_string=""
-    
+
     root_path = os.getcwd()+'/flaskApp/pbft/'
+
     os.chdir(root_path)
+
     myfile_path = os.getcwd() + '/$node_' + str(data['node']) + '.blockchain'
     with open(myfile_path, "r") as file:
         os.chmod(myfile_path,0o777)
@@ -162,8 +164,10 @@ def parseBlockchainFile(data):
         for block in text_string[:-1]:
             # print(block)
             blockchain.append(json.loads(block))
+        
         os.chdir('../../')
-        return {'data': blockchain}
+
+    return {'data': blockchain}
         
         
 
