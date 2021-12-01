@@ -11,3 +11,29 @@ sleep 5
 curl -vLX POST --data '{ "id":"(0, 2)", "client_url":"http://localhost:20030/reply","timestamp":1638355432.8699782,"data":"sample message 2"}' http://localhost:30001/request
 
 sleep 5
+#!/bin/sh
+
+curl -vLX POST --data '{ "id":"(0, 0)", "client_url":"http://localhost:20030/reply","timestamp":1638384710.3288543,"data":"Hello World!"}' http://localhost:30001/request
+
+sleep 5
+
+curl -vLX POST --data '{ "id":"(0, 1)", "client_url":"http://localhost:20030/reply","timestamp":1638384710.3288543,"data":"sample message 1"}' http://localhost:30001/request
+
+sleep 5
+
+curl -vLX POST --data '{ "id":"(0, 2)", "client_url":"http://localhost:20030/reply","timestamp":1638384710.3288543,"data":"sample message 2"}' http://localhost:30001/request
+
+sleep 5
+#!/bin/sh
+
+curl -vLX POST --data '{ "id":"(0, 0)", "client_url":"http://localhost:20030/reply","timestamp":1638384884.8345892,"data":"Hello World!"}' http://localhost:30001/request
+
+sleep 5
+
+curl -vLX POST --data '{ "id":"(0, 1)", "client_url":"http://localhost:20030/reply","timestamp":1638384884.8345892,"data":"sample message 1"}' http://localhost:30001/request
+
+sleep 5
+
+curl -vLX POST --data '{ "id":"(0, 2)", "client_url":"http://localhost:20030/reply","timestamp":1638384884.8345892,"data":"sample message 2"}' http://localhost:30001/request
+
+sleep 5
