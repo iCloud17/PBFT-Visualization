@@ -3,6 +3,7 @@ from flask import jsonify, request, render_template
 from .pbft import requestHandler as rh
 
 messageData = { }
+pbftData = {}
 
 
 @app.route('/node', methods=['GET', 'POST'])
@@ -34,19 +35,18 @@ def msg():
 
 @app.route("/")
 def introPage():
-    messageData = rh.parseJSONfile()
     return render_template('intro.html')
 
 
 @app.route("/pbft.html")
 def pbftPage():
-    messageData = rh.parseJSONfile()
     return render_template('pbft.html')
 
 @app.route("/startPBFT", methods=['GET', 'POST'])
 def startPBFT():
     # POST request
     if request.method == 'POST':
+        pbftData = request.get_json()
         print('Incoming..',request.get_json())
         rh.runPBFTAlgo(request.get_json())
         return 'OK', 200
@@ -55,3 +55,8 @@ def startPBFT():
     else:
         message = {'greeting':'Hello from Flask!'}
         return jsonify(message)  # serialize and use JSON headers
+
+@app.route("/getLogs", methods=['GET'])
+def getLogs():
+    if request.method == 'GET':
+        return 'OK'

@@ -118,10 +118,7 @@
             arrow.style.width = `${line.offsetWidth + head.offsetWidth}px`;
             line.style.width = `${dist - head.offsetWidth}px`;
             
-            line.addEventListener('click', () => {
-                console.log("CLICKED LINE", y1, x1, x2);
-                getMsgData(y1, x1, x2, parseMsgData);
-            });
+            line.addEventListener('click', () => {getMsgData(y1, x1, x2, parseMsgData);});
             head.addEventListener('click', () => {getMsgData(y1, x1, x2, parseMsgData);});
         }
 
@@ -133,32 +130,65 @@
 
         //#region Create Table-----------------------------
         let nreplicas = 4;
-        for(let i = 0; i < nreplicas; i++) {
-            addReplicas();
-        }
-        drawArrow(0, 0, 1, 1);
-        for(let i = 2; i <= nreplicas; i++) {
-            drawArrow(1, 1, i, 2);
-        }
-        for(let i = 1; i <= nreplicas; i++) {
-            for(let j = 1; j <= nreplicas; j++) {
-                if(i != j)
-                    drawArrow(i, 2, j, 3);
+        let logData;
+        getTableLogs();
+
+        function createTable() {
+            for(let i = 0; i < logData.replicas; i++) {
+                addReplicas();
+            }
+            for(let i = 0; i < logData.data.length; i++) {
+                let src = logData.data[i].source;
+                let dest = logData.data[i].dest;
+                let phaseT = logData.data[i].type;
+                let phaseId = 0;
+                for(let j = 0; j < phases.length; j++) {
+                    if(phases[j] === phaseT) {
+                        phaseId = j;
+                        break;
+                    }
+                }
+                drawArrow(src, phaseId, dest, phaseId + 1);
             }
         }
-        for(let i = 1; i <= nreplicas; i++) {
-            for(let j = 1; j <= nreplicas; j++) {
-                if(i != j)
-                    drawArrow(i, 3, j, 4);
-            }
-        }
-        for(let i = 1; i <= nreplicas; i++) {
-            drawArrow(i, 4, 0, 5);
-        }
+        // for(let i = 0; i < nreplicas; i++) {
+        //     addReplicas();
+        // }
+        // drawArrow(0, 0, 1, 1);
+        // for(let i = 2; i <= nreplicas; i++) {
+        //     drawArrow(1, 1, i, 2);
+        // }
+        // for(let i = 1; i <= nreplicas; i++) {
+        //     for(let j = 1; j <= nreplicas; j++) {
+        //         if(i != j)
+        //             drawArrow(i, 2, j, 3);
+        //     }
+        // }
+        // for(let i = 1; i <= nreplicas; i++) {
+        //     for(let j = 1; j <= nreplicas; j++) {
+        //         if(i != j)
+        //             drawArrow(i, 3, j, 4);
+        //     }
+        // }
+        // for(let i = 1; i <= nreplicas; i++) {
+        //     drawArrow(i, 4, 0, 5);
+        // }
 
         //#endregion
 
         //#region Requests---------------------------------
+        function getTableLogs() {
+            fetch('/getLogs').then(function (response) { // At this point, Flask has printed our JSON
+                return response.json();
+            }).then(function (json) {
+            
+                console.log('GET response: ', json);
+                // Should be 'OK' if everything was successful
+                logData = json;
+                createTable();
+            });
+        }
+        
         function reformatReq(nodeId) {
             if(nodeId == 0) {
                 return 'client';
