@@ -2,7 +2,7 @@ from flaskApp import app
 from flask import jsonify, request, render_template
 from .pbft import requestHandler as rh
 
-messageData = {}
+messageData = { }
 
 
 @app.route('/node', methods=['GET', 'POST'])
