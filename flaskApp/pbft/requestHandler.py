@@ -6,7 +6,10 @@ import ast
 
 def getNodeData(json_data):
     output_list = []
-    count = 0 
+    phases_list = {'request':0, 'preprepare':1, 'prepare':2, 'commit':3,'reply':4}
+    total_count_phase = 0
+    source_message_list = []
+    phase_count = 0 
     root_path = os.getcwd()+'/flaskApp/pbft/'
     for root,dirs,files in os.walk(root_path):
         for d in dirs:
@@ -23,10 +26,17 @@ def getNodeData(json_data):
                 output_list.append(json.loads(each_line))
     for each_dict in output_list:
         if each_dict['destination']==json_data['destination'] and each_dict['type']==json_data['type']:
-            while each_dict["time_stamp"] <= time.time():
-                count=+1
-            print(count)
-            return
+                total_count_phase+=1
+                source_message_list.append(each_dict['source'])
+
+
+    data = {
+        "Sources List":source_message_list,
+        "Number of messages in the phase":total_count_phase,
+        "Phase": json_data['phase']
+
+    }
+    return data
 
 
 def getMsgData(json_data):
@@ -114,7 +124,6 @@ def runPBFTAlgo(json):
     
     subprocess.call(os.getcwd() + '/run.sh')
     os.chdir('../../')
-    print("OS CWD =======", os.getcwd())
 
 def runSendRequest(json):
     subprocess.call(os.path.abspath(os.getcwd())+'/flaskApp/pbft/dynamic_trial.sh')
