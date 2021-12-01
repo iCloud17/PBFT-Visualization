@@ -7,6 +7,7 @@
         const hnavs = document.querySelectorAll('.hnavbar a');
         function checkClick(navs, idx) {
             navs.forEach((nav, i) => {
+                console.log(nav);
                 nav.addEventListener('click', function() {
                     console.log('clicked', nav, nav.className, activeNav[idx]);
                     nav.className = 'active';

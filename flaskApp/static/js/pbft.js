@@ -296,32 +296,6 @@
         }
         //#endregion
 
-        for(let i = 0; i < 4; i++) {
-            fetch('/getBlock', {
-
-                // Specify the method
-                method: 'POST',
-            
-                // JSON
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            
-                // A JSON payload
-                body: JSON.stringify({
-                    "node": i
-                })
-            }).then(function (response) { // At this point, Flask has printed our JSON
-                return response.json();
-            }).then(function (val) {
-                // json.source = reformatJson(json.source);
-                // json.destination = reformatJson(json.destination);
-                console.log('POST response: ', val);
-                // Should be 'OK' if everything was successful
-                // parseMsgData(val);
-            });
-        }
-
     });
 
 })();

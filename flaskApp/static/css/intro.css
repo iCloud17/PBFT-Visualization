@@ -60,6 +60,7 @@
 #verNavBar ul li {
     margin: 0;
     padding: 0;
+    cursor: pointer;
 }
 
 #verNavBar li a {
@@ -83,6 +84,7 @@
     flex: 7;
     z-index: 3;
     position: relative;
+    min-height: 100%;
 }
 
 #header {

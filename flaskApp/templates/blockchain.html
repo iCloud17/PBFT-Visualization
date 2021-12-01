@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/assets/fontawesome/css/fontawesome.css') }}">
 		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 		<script src="{{ url_for('static', filename='css/assets/fontawesome/js/fontawesome.js')}}"></script>
 		<script src="{{ url_for('static', filename='css/assets/fontawesome/js/solid.js')}}"></script>
@@ -18,64 +19,58 @@
 		<noscript></noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/assets/noscript.css') }}"></noscript>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/intro.css') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/pbft.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/blockchain.css') }}">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
 	</head>
 	<body class="is-preload">
 		<div class="hnavbar" id="navbar">
 			<ul>
-				<li><a href="#home">Intro</a></li>
-				<li><a class="active" href="#news">Main</a></li>
-				<li><a href="#contact">Blockchain</a></li>
-				<li><a href="#about">Blockchain Playground</a></li>
+				<li><a href="/">Intro</a></li>
+				<li><a href="pbft.html">Main</a></li>
+				<li><a class="active" href="#">Blockchain</a></li>
+				<li><a href="#">Blockchain Playground</a></li>
 			  </ul>
 		</div>
 
-	<!-- One -->
-		<section id="one" class="wrapper style2 special">
-			<div class="inner alt">
-				<section class="mySection">
-					<header class="major console">
-						<ul class="icons major">
-							<li>
-								<span class="icon solid fa-code">
-									<span class="label">Console</span>
-								</span>
-							</li>
-						</ul>
-					</header>
-					<div id="consoleOp">
-						<p>
-							INSTRUCTIONS
-							<br>
-							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum doloribus dolor perferendis, minima accusamus, officia eligendi atque laboriosam voluptate praesentium laborum corrupti vitae dignissimos quisquam earum, quos iusto? Autem, corrupti!
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel odit velit modi blanditiis qui maxime, recusandae ea sunt quae! Sit deserunt rem, corrupti culpa aut corporis molestias quae consequatur!
-							<br>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel odit velit modi blanditiis qui maxime, recusandae ea sunt quae! Sit deserunt rem, corrupti culpa aut corporis molestias quae consequatur!
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel odit velit modi blanditiis qui maxime, recusandae ea sunt quae! Sit deserunt rem, corrupti culpa aut corporis molestias quae consequatur!
-							<br>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel odit velit modi blanditiis qui maxime, recusandae ea sunt quae! Sit deserunt rem, corrupti culpa aut corporis molestias quae consequatur!
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel odit velit modi blanditiis qui maxime, recusandae ea sunt quae! Sit deserunt rem, corrupti culpa aut corporis molestias quae consequatur!
-							<br>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel odit velit modi blanditiis qui maxime, recusandae ea sunt quae! Sit deserunt rem, corrupti culpa aut corporis molestias quae consequatur!
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus vel odit velit modi blanditiis qui maxime, recusandae ea sunt quae! Sit deserunt rem, corrupti culpa aut corporis molestias quae consequatur!
-							<br>
-						</p>
+		<div id="horiSplit">
+			<div class="vnavbar" id="verNavBar">
+				<ul>
+				</ul>
+			</div>
+			<div id="restOfPage">
+				<!-- One -->
+				<section id="one" class="wrapper style2 special">
+					<div class="inner alt">
+						<section class="mySection">
+							<header class="major console">
+								<ul class="icons major">
+									<li>
+										<span class="icon solid fa-link">
+											<span class="label">Blockchain</span>
+										</span>
+									</li>
+								</ul>
+							</header>
+						</section>
+					</div>
+					<div id="blockchain">
+						<div id="bcLabel">Blockchain</div>
 					</div>
 				</section>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					</ul>
+					<p class="copyright">&copy; Untitled. Credits: <a href="http://html5up.net">HTML5 UP</a></p>
+				</footer>
 			</div>
-			
-		</section>
-
-	<!-- Footer -->
-		<footer id="footer">
-			<ul class="icons">
-				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-			</ul>
-			<p class="copyright">&copy; Untitled. Credits: <a href="http://html5up.net">HTML5 UP</a></p>
-		</footer>
+		</div>
 	
-
 		<!-- Scripts -->
 			<script src="{{ url_for('static', filename='js/assets/jquery.min.js') }}"></script>
 			<script src="{{ url_for('static', filename='js/assets/jquery.scrolly.min.js') }}"></script>
@@ -85,8 +80,7 @@
 			<script src="{{ url_for('static', filename='js/assets/main.js') }}"></script>
 			<script src="{{ url_for('static', filename='js/smoothScroll.js') }}"></script>
 			<script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-			<script src="{{ url_for('static', filename='js/pbft.js') }}"></script>
-
+			<script src="{{ url_for('static', filename='js/blockchain.js') }}"></script>
 
 	</body>
 </html>

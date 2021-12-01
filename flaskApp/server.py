@@ -67,7 +67,14 @@ def getLogs():
     if request.method == 'GET':
         return rh.parseJSONfile(pbftData)
 
+@app.route("/getPBFTdata", methods=['GET'])
+def getPBFTdata():
+    global pbftData
+    if request.method == 'GET':
+        return pbftData
+
 @app.route("/getBlock", methods=['POST'])
 def getBlock():
     if request.method == 'POST':
         return rh.parseBlockchainFile(request.get_json())
+
