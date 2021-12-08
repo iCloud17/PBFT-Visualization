@@ -2,7 +2,7 @@
     "use strict";
 
     //#region Requests---------------------------------
-    function runningPBFT(msg = 'Hello World', replicas = 4, request = 10, retries = 2, sync = 5, ckpt = 1) {
+    function runningPBFT(msg = 'Hello World', replicas = 4, request = 10, retries = 2, ckpt = 1, sync = 5) {
         let msgList = [msg];
         for(let i = 1; i < request; i++) {
             msgList.push(`sample message ${i}`);
@@ -47,6 +47,6 @@
         event.preventDefault();
         console.log(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value,inputs[5].value);
         overlay.className = 'showing';
-        runningPBFT(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value,inputs[5].value);
+        runningPBFT(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value);
     });
 }());

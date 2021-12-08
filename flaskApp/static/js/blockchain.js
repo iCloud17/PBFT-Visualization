@@ -48,6 +48,7 @@
                 replica.appendChild(atag);
                 atag.innerText = `Replica ${i} Blockchain`;
                 replica.addEventListener('click', function() {
+                    removeAllArrows();
                     loadBlockchain(i);
                     vNav.children[i - 1].children[0].className = 'active';
                     vNav.children[curReplica].children[0].className = '';
@@ -122,11 +123,8 @@
             blocks.forEach(block => {
                 block.addEventListener('mouseenter', function() {
                     blockchain.classList.add('hovering');
-                })
-                block.addEventListener('mouseleave', function() {
-                    blockchain.classList.remove('hovering');
-                })
-            })
+                });
+            });
         }
 
         //#endregion
